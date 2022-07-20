@@ -21,6 +21,10 @@ typedef struct check_map{
 
 
 }t_map;
+
+int chek_first_line(t_map *map, char *file);
+int check_map(t_map *map, char *file);
+int	line_count(int fd, char *file);
 char	*free_tab(char *str, char c);
 char	*get_next_line(const int fd);
 char	is_newline_endof_str(char c);

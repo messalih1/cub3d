@@ -10,3 +10,8 @@ if first index of line is espace or tab or 1 else is error
 100000100000001
 
 3.
+
+
+= alloc all line of file in block
+
+= if line has espace slice this espace and check next line if has 1 | 0 
