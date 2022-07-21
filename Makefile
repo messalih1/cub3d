@@ -1,7 +1,7 @@
 NAME = cub3d
 CC = cc
 # CFLAGS = -Wall -Wextra -Werror
-SRC = main.c get_next_line.c  check_first_line.c 
+SRC = main.c get_next_line.c  check_first_line.c check_midile_lines.c check_.c
  
  
 OBJ = $(SRC:.c=.o)

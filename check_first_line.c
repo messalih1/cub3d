@@ -23,22 +23,22 @@ int	line_count(int fd, char *file)
 
 static int check_first_line_(t_map *m, int i)
 {
-    while (m->aloc[m->i][i])
+    while (m->str[i])
     {
-        if(m->aloc[m->i][i] == ' ' || m->aloc[m->i][i] == '\t')
+        if(m->str[i] == ' ' || m->str[i] == '\t')
         {
-            while (m->aloc[m->i][i] && (m->aloc[m->i][i] == ' ' || m->aloc[m->i][i] == '\t'))
+            while (m->str[i] && (m->str[i] == ' ' || m->str[i] == '\t'))
                 i++;
-            if(ft_strlen(m->aloc[m->i]) - 1 == (int)i)
+            if(ft_strlen(m->str) - 1 == (int)i)
                 return 0;
-            else if(m->aloc[m->i][i] != '1' && m->aloc[m->i][i] != '\n')
+            else if(m->str[i] != '1' && m->str[i] != '\n')
                 return 0;
         }
-        else if(m->aloc[m->i][i] == '1')
+        else if(m->str[i] == '1')
         {
-            while(m->aloc[m->i][i] == '1')
+            while(m->str[i] == '1')
                 i++;
-            if(m->aloc[m->i][i] != ' ' && m->aloc[m->i][i] != '\t' && m->aloc[m->i][i] != '\n')
+            if(m->str[i] != ' ' && m->str[i] != '\t' && m->str[i] != '\n')
                 return 0;
         }
         i++;
@@ -48,20 +48,15 @@ static int check_first_line_(t_map *m, int i)
 
 int chek_first_line(t_map *map, char *file)
 {
-    map->i = 0;
- 	map->fd = open(file, O_RDONLY);
-	if (map->fd == -1)
+    int fd;
+ 
+ 	fd = open(file, O_RDONLY);
+	if (fd == -1)
 		return (0);
-    map->len = line_count(map->fd, file);
-	map->fd = open(file, O_RDONLY);
-	if (map->fd == -1)
-		return (0);
-	map->aloc = malloc(sizeof(char *) * map->len);
-	if (map->aloc == NULL)
-		return (0);
-	map->aloc[map->i] = get_next_line(map->fd);
-    if(map->aloc[map->i][0] == '\n')
+	map->str = get_next_line(fd);
+    if(map->str[0] == '\n')
         return (0);
     return (check_first_line_(map, 0));
+  
 }
 
