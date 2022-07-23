@@ -1,7 +1,7 @@
 NAME = cub3d
 CC = cc
 # CFLAGS = -Wall -Wextra -Werror
-SRC = main.c get_next_line.c  check_first_line.c check_midile_lines.c check_.c
+SRC = main.c get_next_line.c put_walls.c
  
  
 OBJ = $(SRC:.c=.o)
@@ -10,11 +10,11 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) libft/libft.a $^ -o $@
+	@$(CC)  -lmlx -framework OpenGL -framework AppKit  libft/libft.a  $^ -o $@
  
 
 %.o: %.c
-	@$(CC) -c $< -o $@
+	@$(CC)  -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ)

@@ -1,34 +1,28 @@
 #include "header.h"
+# include <mlx.h>
 
 
 
+// walls 
+// space black
 
 
-
-
-
-int check_map(t_map *map, char *file)
-{
-    if(alloc_lines(map,file))
-        return check_midile_line(map, file);
-
-    return 1;
-}
 
 int main(int argc, char *argv[])
 {
-    t_map	m;
-	t_map	*mm;
+	t_m p;
+	t_m *m = &p;
+	t_data	im;
+	t_data	*img = &im;
+	 
 
-	mm = &m;
+	img->mlx = mlx_init();
+
+	img->mlx_win = mlx_new_window(img->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Hello world!");
 	
-	if (check_map(&m, argv[1]) == 0)
-	{
-		printf("error\n");
-		return (0);
-	}
- 
-    
-  
+	put_walls(m,img,argv[1]);
+
+	mlx_loop(img->mlx);
+
     return 0;
 }

@@ -173,3 +173,17 @@ if first index of line is espace or tab or 1 else is error
                 return 0;
             i++;
         }
+
+
+
+
+        img->img = mlx_new_image(img->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+	
+	alloc_lines(m, argv[1]);
+	m->x = 0;
+	put_pixel(img,m);	
+ 
+
+	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, WINDOW_WIDTH, WINDOW_HEIGHT);
