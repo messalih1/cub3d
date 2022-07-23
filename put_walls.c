@@ -42,7 +42,7 @@ void alloc_lines(t_m *m, char *file)
 
 
 
-void put_walls(t_m *m, t_data *img, char *file)
+void put_walls(t_m *m, t_player *img, char *file)
 {
 	alloc_lines(m, file);
 	img->img_path = "./wall.xpm";

@@ -34,7 +34,10 @@ typedef struct t_struct{
 }t_m;
 
 
-typedef struct	s_data {
+ 
+
+typedef struct t_play
+{
     void	*mlx;
 	void	*mlx_win;
 	void	*img;
@@ -46,10 +49,6 @@ typedef struct	s_data {
     int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
-
-typedef struct t_play
-{
     int x;
     int y;
     int radius;
@@ -58,15 +57,16 @@ typedef struct t_play
     double rotation_angle;
     double move_speed;
     double rotaion_speed;
+
 }t_player;
 
 
 
 
-void palyer_movement(t_m *m, t_data *img, t_player *p);
+void palyer_movement(t_m *m, t_player *img);
 int	line_count(int fd, char *file);
 void alloc_lines(t_m *m, char *file);
-void put_walls(t_m *m, t_data *img, char *file);
+void put_walls(t_m *m, t_player *img, char *file);
 char	*free_tab(char *str, char c);
 char	*get_next_line(const int fd);
 char	is_newline_endof_str(char c);
