@@ -80,10 +80,5 @@ void put_walls(t_m *m, t_data *img, char *file)
 		z += TILE_SIZE;
 		i++;
 	}
-	
-
-
-
-
 }
 

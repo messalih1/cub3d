@@ -7,6 +7,9 @@
 # include <fcntl.h>
 # include <mlx.h>
 #include "libft/libft.h"
+#include <math.h>
+
+#define PI 3.14159265358979323846
 
 #define BUFFER_SIZE 1
 #define TILE_SIZE 40
@@ -39,11 +42,28 @@ typedef struct	s_data {
 	char	*addr;
 	char    *img_path;
 	char    *img_path_;
+	char    *red_img;
     int		bits_per_pixel;
 	int		line_length;
 	int		endian;
 }				t_data;
 
+typedef struct t_play
+{
+    int x;
+    int y;
+    int radius;
+    int turn_direcrtion;
+    int walk_direcrtion;
+    double rotation_angle;
+    double move_speed;
+    double rotaion_speed;
+}t_player;
+
+
+
+
+void palyer_movement(t_m *m, t_data *img, t_player *p);
 int	line_count(int fd, char *file);
 void alloc_lines(t_m *m, char *file);
 void put_walls(t_m *m, t_data *img, char *file);
