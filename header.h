@@ -33,19 +33,23 @@ typedef struct t_struct{
     
 }t_m;
 
-
+;
  
 
 typedef struct t_play
 {
-    void	*mlx;
+    void	    *mlx;
 	void	*mlx_win;
-	void	*img;
-	void	*img_;
-	char	*addr;
-	char    *img_path;
-	char    *img_path_;
-	char    *red_img;
+	void	*walls;
+	char	*p_walls;
+    void	*img_black;
+    char	*p_img_black;
+	void	*img_circle;
+	char	*p_img_circle;
+	void	*img_red_line;
+	void	*img_black_line;
+	char	*p_img_black_line;
+	char	*p_img_red_line;
     int		bits_per_pixel;
 	int		line_length;
 	int		endian;

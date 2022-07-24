@@ -1,7 +1,7 @@
 NAME = cub3d
 CC = cc
 # CFLAGS = -Wall -Wextra -Werror
-SRC = main.c get_next_line.c put_walls.c player_movement.c
+SRC = main.c get_next_line.c put_walls.c movement_player.c
  
 OBJ = $(SRC:.c=.o)
 
@@ -23,4 +23,3 @@ fclean: clean
  
 re: fclean all
 	@echo "${PURPLE}re${RESET}"
-

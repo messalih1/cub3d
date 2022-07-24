@@ -45,11 +45,11 @@ void alloc_lines(t_m *m, char *file)
 void put_walls(t_m *m, t_player *img, char *file)
 {
 	alloc_lines(m, file);
-	img->img_path = "./wall.xpm";
-	img->img_path_ = "./black.xpm";
+	img->p_walls = "./wall.xpm";
+	img->p_img_black = "./black.xpm";
 	
-	img->img =  mlx_xpm_file_to_image(img->mlx, img->img_path, &img->line_length, &img->endian);
-	img->img_ =  mlx_xpm_file_to_image(img->mlx, img->img_path_, &img->line_length, &img->endian);
+	img->walls =  mlx_xpm_file_to_image(img->mlx, img->p_walls, &img->line_length, &img->endian);
+	img->img_black =  mlx_xpm_file_to_image(img->mlx, img->p_img_black, &img->line_length, &img->endian);
  
 
 	int i = 0;
@@ -67,12 +67,12 @@ void put_walls(t_m *m, t_player *img, char *file)
 		{
 			if(m->allocation[i][x] == '1')
 			{
-				mlx_put_image_to_window(img->mlx, img->mlx_win,img->img ,j, z);
+				mlx_put_image_to_window(img->mlx, img->mlx_win,img->walls ,j, z);
 				j+= TILE_SIZE;
 			}
 			else
 			{
-				mlx_put_image_to_window(img->mlx, img->mlx_win,img->img_ ,j, z);
+				mlx_put_image_to_window(img->mlx, img->mlx_win,img->img_black ,j, z);
 				j+= TILE_SIZE;
 			}	
 			x++;

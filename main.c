@@ -1,13 +1,5 @@
 #include "header.h"
-// # include <mlx.h>
-
-
-
-// walls 
-// space black
-
-
-// circle(thid, this.y, this.redius) here use mlx_xpm_file_to_image()
+ 
 int main(int argc, char *argv[])
 {
 	t_m p;
