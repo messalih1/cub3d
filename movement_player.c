@@ -27,6 +27,23 @@ void inti_player(t_m *m, t_player *p)
 
 
 
+void fiew_of_view(t_player *p)
+{
+	int colum_id;
+	int ray_angle;
+	int i;
+
+	colum_id = 0;
+	ray_angle = p->rotation_angle - (FOV_ANGLE / 2);
+	i = 0;
+	while (i < NUM_RAYS)
+	{
+		ray_angle += FOV_ANGLE / NUM_RAYS;
+		colum_id++;
+		i++;
+	}
+	 
+}
 int	key_hook(int keycode, t_player *p)
 {
     if (keycode == 2)
@@ -74,8 +91,10 @@ int	key_hook(int keycode, t_player *p)
 	    // mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_red_line ,p->x + (cos(p->rotation_angle ) * 10 ),p->y + (sin(p->rotation_angle)) * 10 );
 
     }
+	fiew_of_view(p);
 	return (0);
 }
+
 
 int	key_relese(int keycode, t_player *p)
 {
@@ -99,7 +118,6 @@ void palyer_movement(t_m *m, t_player *p)
     inti_player(m,p);
     mlx_hook(p->mlx_win, 02, 1L<<0, key_hook, p);
 	mlx_hook(p->mlx_win, 03, 1L<<1, key_relese, p);// relese
-
 
 
 } 

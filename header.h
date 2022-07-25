@@ -19,6 +19,9 @@
 #define WINDOW_WIDTH MAP_NUM_COLS * TILE_SIZE
 #define WINDOW_HEIGHT MAP_NUM_ROWS * TILE_SIZE
 
+#define FOV_ANGLE 60 * (PI / 180)
+#define WALL_STRIP_WIDTH 4
+#define NUM_RAYS WINDOW_WIDTH / WALL_STRIP_WIDTH
 
 typedef struct t_struct{
 	
@@ -52,6 +55,7 @@ typedef struct t_play
 	char	*p_img_red_line;
     int		bits_per_pixel;
 	int		line_length;
+	
 	int		endian;
     int x;
     int y;
