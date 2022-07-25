@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 	put_walls(m,play,argv[1]);
 
 	palyer_movement(m,play);
-
+	
 
 	
  

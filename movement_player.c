@@ -23,8 +23,6 @@ void inti_player(t_m *m, t_player *p)
 	p->p_img_red_line = "./line.xpm";
 	p->img_red_line =  mlx_xpm_file_to_image(p->mlx, p->p_img_red_line, &p->line_length, &p->endian);
 	mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_red_line ,p->x + (cos(p->rotation_angle ) * 10 ),p->y + (sin(p->rotation_angle)) * 10);
-	 
-
 }
 
 
@@ -33,27 +31,21 @@ int	key_hook(int keycode, t_player *p)
 {
     if (keycode == 2)
     {
-        p->turn_direcrtion = +1; 
-        int move_step = p->turn_direcrtion * p->move_speed;
-        p->x += cos(p->rotation_angle) * move_step; 
-        p->y += sin(p->rotation_angle) * move_step; 
-	    mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle ,p->x  , p->y  );
-    
+        p->turn_direcrtion = -1; 
+        p->rotation_angle += p->turn_direcrtion + p->rotaion_speed;
+	    // mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_red_line ,p->x + (cos(p->rotation_angle ) * 10 ), p->y + (sin(p->rotation_angle)) * 10);
+
     }
 	else if (keycode == 0)
     {
-        
-		p->turn_direcrtion = -1; 
-        int move_step = p->turn_direcrtion * p->move_speed;
-        p->x += cos(p->rotation_angle) * move_step; 
-        p->y += sin(p->rotation_angle) * move_step; 
-	    mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle ,p->x  , p->y  );
+		p->turn_direcrtion = +1; 
+        p->rotation_angle += p->turn_direcrtion + p->rotaion_speed;
+	    // mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_red_line ,p->x + (cos(p->rotation_angle ) * 10 ), p->y + (sin(p->rotation_angle)) * 10);
 
     }
 	else if (keycode == 1)
     {
-         
-		p->walk_direcrtion = -1; 
+		p->walk_direcrtion = +1; 
         int move_step = p->walk_direcrtion * p->move_speed;
         p->x += cos(p->rotation_angle) * move_step; 
         p->y += sin(p->rotation_angle) * move_step; 
@@ -62,30 +54,26 @@ int	key_hook(int keycode, t_player *p)
     }
 	else if (keycode == 13)
     {
-        
-		p->walk_direcrtion = +1;  
+		p->walk_direcrtion = -1;  
         int move_step = p->walk_direcrtion * p->move_speed;
         p->x += cos(p->rotation_angle) * move_step; 
         p->y += sin(p->rotation_angle) * move_step; 
 	    mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle ,p->x  , p->y  );
-
     }
     else if (keycode == 124)
     {
 		p->turn_direcrtion = -1; 
         p->rotation_angle += p->turn_direcrtion + p->rotaion_speed;
-	    mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_red_line ,p->x + (cos(p->rotation_angle ) * 10 ), p->y + (sin(p->rotation_angle)) * 10);
+	    // mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_red_line ,p->x + (cos(p->rotation_angle ) * 10 ), p->y + (sin(p->rotation_angle)) * 10);
 
     }
     else if (keycode == 123)
     {
 		p->turn_direcrtion = +1; 
         p->rotation_angle += p->turn_direcrtion + p->rotaion_speed;
-	    mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_red_line ,p->x + (cos(p->rotation_angle ) * 10 ),p->y + (sin(p->rotation_angle)) * 10 );
+	    // mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_red_line ,p->x + (cos(p->rotation_angle ) * 10 ),p->y + (sin(p->rotation_angle)) * 10 );
 
     }
-
-     
 	return (0);
 }
 
@@ -114,4 +102,4 @@ void palyer_movement(t_m *m, t_player *p)
 
 
 
-}
+} 
