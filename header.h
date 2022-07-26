@@ -35,8 +35,7 @@ typedef struct t_struct{
     char **lines;
     
 }t_m;
-
-;
+ 
  
 
 typedef struct t_play
@@ -55,8 +54,11 @@ typedef struct t_play
 	char	*p_img_red_line;
     int		bits_per_pixel;
 	int		line_length;
-	
+    int wall_hit_x;
+    int wall_hit_y;
+    int distance;
 	int		endian;
+    int ray_angle;
     int x;
     int y;
     int radius;
@@ -70,7 +72,7 @@ typedef struct t_play
 
 
 
-
+void fiew_of_view(t_player *p);
 void palyer_movement(t_m *m, t_player *img);
 int	line_count(int fd, char *file);
 void alloc_lines(t_m *m, char *file);
