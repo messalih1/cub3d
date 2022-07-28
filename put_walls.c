@@ -58,7 +58,7 @@ void put_walls(t_m *m, t_player *img, char *file)
 	int z;
 	
 	z = 0;
-		j = 0;
+	j = 0;
 	while (i < m->len)
 	{
 		x = 0;

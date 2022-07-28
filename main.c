@@ -14,6 +14,8 @@ int main(int argc, char *argv[])
 
 	palyer_movement(m,play);
 	
+
+  
  
 
 	

@@ -2,11 +2,11 @@
 
 
 
-void normaliz_angle(t_player *p)
+void normaliz_angle(t_player *p)// keep ray between 0 and 360 (0 && 2pi)
 {
     int x;
     int t;
-
+        // ray facing
     t = p->ray_angle;
     x = (2 * PI );
     p->ray_angle = p->ray_angle % x; // if x > 0 x will still the same value
@@ -21,7 +21,7 @@ void fiew_of_view(t_player *p)
 	int i;
 
 	colum_id = 0;
-    //              pi / 2    
+    //              pi / 2  90 - 60 / 2   
 	p->ray_angle = p->rotation_angle - (FOV_ANGLE / 2);// you can alloc by number of rays and assign the values by indexws to access
 	i = 0;
 	while (i < 1)
