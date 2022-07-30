@@ -15,19 +15,33 @@ void normaliz_angle(t_player *p)// keep ray between 0 and 360 (0 && 2pi)
   
 }
 
+void cast_ray(int id, t_player *p)
+{
+    int xintercept;
+    int yintercept;
+    int xstep;
+    int ystep;
+
+    yintercept = (int)(p->y / TILE_SIZE) * TILE_SIZE;
+    xintercept = p->x + (yintercept - p->y_intercept) / tan(p->ray_angle);
+
+
+}
+
 void fiew_of_view(t_player *p)
 {
-	int colum_id;
+	int ray_id;
 	int i;
 
-	colum_id = 0;
+	ray_id = 0;
     //              pi / 2  90 - 60 / 2   
 	p->ray_angle = p->rotation_angle - (FOV_ANGLE / 2);// you can alloc by number of rays and assign the values by indexws to access
 	i = 0;
 	while (i < 1)
 	{
 		p->ray_angle += FOV_ANGLE / NUM_RAYS;
-		colum_id++;// is the ray_Id
+		cast_ray(ray_id, p);
+        ray_id++;// is the ray_Id
 		i++;
 	}
     normaliz_angle(p);// by this func we confined ray between 6 time (360 / 60), and ignor be negative
