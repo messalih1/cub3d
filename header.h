@@ -62,7 +62,7 @@ typedef struct t_play
     long     y_step;
     int     distance;
 	int		endian;
-    int     ray_angle;
+    float     ray_angle;
     int     x;
     int      y;
     int radius;
@@ -71,6 +71,10 @@ typedef struct t_play
     double rotation_angle;
     double move_speed;
     double rotaion_speed;
+    int is_face_down;
+    int is_face_up;
+    int is_face_r;
+    int is_face_l;
 
 }t_player;
 
