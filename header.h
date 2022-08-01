@@ -64,13 +64,8 @@ typedef struct t_play
 	int		endian;
     float     ray_angle;
     int     x;
-    int      y;
-    int radius;
-    int turn_direcrtion;
-    int walk_direcrtion;
+    int     y;
     double rotation_angle;
-    double move_speed;
-    double rotaion_speed;
     int is_face_down;
     int is_face_up;
     int is_face_r;

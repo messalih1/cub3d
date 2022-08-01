@@ -5,16 +5,14 @@ SRC = main.c get_next_line.c put_walls.c movement_player.c finding_walls.c
  
 OBJ = $(SRC:.c=.o)
 
-
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC)  -lmlx -framework OpenGL -framework AppKit  libft/libft.a  $^ -o $@
- 
 
 %.o: %.c
-	@$(CC)  -c $< -o $@
-
+	@$(CC) -c $< -o $@
+	 
 clean:
 	@rm -rf $(OBJ)
 
