@@ -58,6 +58,8 @@ typedef struct t_play
     int     wall_hit_y;
     long    x_intercept;
     long    y_intercept;
+    int     walk_direction;
+    int     turn_direction;
     long     x_step;
     long     y_step;
     int     distance;
