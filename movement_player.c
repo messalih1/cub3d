@@ -48,8 +48,8 @@ int	key_hook(int keycode, t_player *p)
     if(p->rotation_angle >= 2 * PI)
       p->rotation_angle -= 2 * PI;
   }
-  printf("%f\n",p->rotation_angle);
-	// fiew_of_view(p);
+  // printf("%f\n",p->rotation_angle);
+	fiew_of_view(p);
 	return (0);
 }
 
