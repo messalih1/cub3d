@@ -23,47 +23,28 @@ int	key_hook(int keycode, t_player *p)
 {
   if (keycode == 13)// w
   {
-    p->walk_direction = -1;
-    if(p->walk_direction == -1)
-    {
-        p->x += cos(p->rotation_angle) * 2; 
-        p->y -= sin(p->rotation_angle) * 2;       
-        mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle ,p->x  , p->y  );
-    }
-    else if(p->walk_direction == 1)
-    {
-        p->x += cos(p->rotation_angle) * 2; 
-        p->y -= sin(p->rotation_angle) * 2;       
-        mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle ,p->x  , p->y  );
-    }
+    p->x += cos(p->rotation_angle) * 2; // if up inciment the space by cos angle
+    p->y -= sin(p->rotation_angle) * 2;       // if up decrment the space by cos angle
+    mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle, p->x ,p->y);
+ 
   }
 	else if (keycode == 1)//s
   {
-    p->walk_direction = 1;
-   if(p->walk_direction == -1)
-    {
-        p->x -= cos(p->rotation_angle) * 2; 
-        p->y += sin(p->rotation_angle) * 2;       
-        mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle ,p->x  , p->y  );
-    }
-    else if(p->walk_direction == 1)
-    {
-        p->x -= cos(p->rotation_angle) * 2; 
-        p->y += sin(p->rotation_angle) * 2;       
-        mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle ,p->x  , p->y  );
-    }
+     // if down decrament by the space to you increment leter
+    p->x -= cos(p->rotation_angle) * 2; 
+    p->y += sin(p->rotation_angle) * 2;       
+    mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle, p->x, p->y);
   }
   else if (keycode == 124)
   {
-    p->turn_direction = 1;
+    
     p->rotation_angle -=  PI / 3;
     if(p->rotation_angle <= 0 )
       p->rotation_angle += 2 * PI;
   }
   else if (keycode == 123)
   {
-    p->turn_direction = -1;
-    p->rotation_angle +=  PI / 3;
+     p->rotation_angle +=  PI / 3;
     if(p->rotation_angle >= 2 * PI)
       p->rotation_angle -= 2 * PI;
   }
