@@ -67,12 +67,12 @@ void put_walls(t_m *m, t_player *img, char *file)
 		{
 			if(m->allocation[i][x] == '1')
 			{
-				mlx_put_image_to_window(img->mlx, img->mlx_win,img->walls ,j, z);
+				mlx_put_image_to_window(img->mlx, img->mlx_win,img->walls ,j, z + 15);
 				j+= TILE_SIZE;
 			}
 			else
 			{
-				mlx_put_image_to_window(img->mlx, img->mlx_win,img->img_black ,j, z);
+				mlx_put_image_to_window(img->mlx, img->mlx_win,img->img_black ,j, z + 15);
 				j+= TILE_SIZE;
 			}	
 			x++;

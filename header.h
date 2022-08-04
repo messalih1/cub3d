@@ -68,7 +68,7 @@ typedef struct t_play
     int yintercept;
     int xstep;
     int ystep;
-
+    t_m map;
 }t_player;
 
 
