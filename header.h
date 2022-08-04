@@ -14,7 +14,7 @@
 #define BUFFER_SIZE 1
 #define TILE_SIZE 40
 #define MAP_NUM_ROWS 5
-#define MAP_NUM_COLS 23
+#define MAP_NUM_COLS 8
 
 #define WINDOW_WIDTH MAP_NUM_COLS * TILE_SIZE
 #define WINDOW_HEIGHT MAP_NUM_ROWS * TILE_SIZE
@@ -56,26 +56,24 @@ typedef struct t_play
 	int		line_length;
     int     wall_hit_x;
     int     wall_hit_y;
-    long    x_intercept;
-    long    y_intercept;
-    long     x_step;
-    long     y_step;
     int     distance;
 	int		endian;
     float     ray_angle;
     int     x;
     int     y;
     double rotation_angle;
-    int is_face_down;
-    int is_face_up;
-    int is_face_r;
-    int is_face_l;
+    int next_hor_x;
+    int next_hor_y;
+    int xintercept;
+    int yintercept;
+    int xstep;
+    int ystep;
 
 }t_player;
 
 
 
-void fiew_of_view(t_player *p);
+void cast_ray(t_player *p);
 void palyer_movement(t_m *m, t_player *img);
 int	line_count(int fd, char *file);
 void alloc_lines(t_m *m, char *file);

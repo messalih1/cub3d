@@ -12,7 +12,7 @@ void inti_player(t_m *m, t_player *p)
   p->x = WINDOW_WIDTH / 2;
   p->y = WINDOW_HEIGHT / 2;
   
-  p->rotation_angle = PI / 2 ;
+  p->rotation_angle = PI / 2;
    
 	p->p_img_circle = "./Shape-1.xpm";
 	p->img_circle =  mlx_xpm_file_to_image(p->mlx, p->p_img_circle, &p->line_length, &p->endian);
@@ -23,10 +23,10 @@ int	key_hook(int keycode, t_player *p)
 {
   if (keycode == 13)// w
   {
+   
     p->x += cos(p->rotation_angle) * 2; // if up inciment the space by cos angle
     p->y -= sin(p->rotation_angle) * 2;       // if up decrment the space by cos angle
     mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle, p->x ,p->y);
- 
   }
 	else if (keycode == 1)//s
   {
@@ -37,7 +37,6 @@ int	key_hook(int keycode, t_player *p)
   }
   else if (keycode == 124)
   {
-    
     p->rotation_angle -=  PI / 3;
     if(p->rotation_angle <= 0 )
       p->rotation_angle += 2 * PI;
@@ -49,7 +48,7 @@ int	key_hook(int keycode, t_player *p)
       p->rotation_angle -= 2 * PI;
   }
   // printf("%f\n",p->rotation_angle);
-	fiew_of_view(p);
+	cast_ray(p);
 	return (0);
 }
 
