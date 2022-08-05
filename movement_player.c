@@ -16,7 +16,7 @@ void inti_player(t_m *m, t_player *p)
    
 	p->p_img_circle = "./Shape-1.xpm";
 	p->img_circle =  mlx_xpm_file_to_image(p->mlx, p->p_img_circle, &p->line_length, &p->endian);
-	mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle ,p->x, p->y); 
+	mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle ,p->x , p->y  ); 
 }
 
 int	key_hook(int keycode, t_player *p)
@@ -26,14 +26,14 @@ int	key_hook(int keycode, t_player *p)
    
     p->x += cos(p->rotation_angle) * 2; // if up inciment the space by cos angle
     p->y -= sin(p->rotation_angle) * 2;       // if up decrment the space by cos angle
-    mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle, p->x ,p->y);
+    mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle, p->x  ,p->y  );
   }
 	else if (keycode == 1)//s
   {
      // if down decrament by the space to you increment leter
     p->x -= cos(p->rotation_angle) * 2; 
     p->y += sin(p->rotation_angle) * 2;       
-    mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle, p->x, p->y);
+    mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle, p->x  , p->y );
   }
   else if (keycode == 124)
   {
@@ -47,6 +47,8 @@ int	key_hook(int keycode, t_player *p)
     if(p->rotation_angle >= 2 * PI)
       p->rotation_angle -= 2 * PI;
   }
+    
+
   // printf("%f\n",p->rotation_angle);
 	cast_ray(p);
 	return (0);

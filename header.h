@@ -59,8 +59,8 @@ typedef struct t_play
     int     distance;
 	int		endian;
     float     ray_angle;
-    int     x;
-    int     y;
+    float     x;
+    float     y;
     double rotation_angle;
     int next_hor_x;
     int next_hor_y;
@@ -76,7 +76,7 @@ typedef struct t_play
 void cast_ray(t_player *p);
 void palyer_movement(t_m *m, t_player *img);
 int	line_count(int fd, char *file);
-void alloc_lines(t_m *m, char *file);
+void alloc_lines(t_player *m, char *file);
 void put_walls(t_m *m, t_player *img, char *file);
 char	*free_tab(char *str, char c);
 char	*get_next_line(const int fd);
