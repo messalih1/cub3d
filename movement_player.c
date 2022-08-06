@@ -11,7 +11,7 @@ void inti_player(t_m *m, t_player *p)
 {
   p->x = WINDOW_WIDTH / 2;
   p->y = WINDOW_HEIGHT / 2;
-  
+  // p->x += TILE_SIZE / 2;
   p->rotation_angle = PI / 2;
    
 	p->p_img_circle = "./Shape-1.xpm";
@@ -26,7 +26,7 @@ int	key_hook(int keycode, t_player *p)
    
     p->x += cos(p->rotation_angle) * 2; // if up inciment the space by cos angle
     p->y -= sin(p->rotation_angle) * 2;       // if up decrment the space by cos angle
-    mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle, p->x  ,p->y  );
+    mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle, p->x   ,p->y  );
   }
 	else if (keycode == 1)//s
   {
