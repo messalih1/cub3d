@@ -29,15 +29,15 @@ void alloc_lines(t_player *img, char *file)
     i = 0;
     fd = open(file, O_RDONLY);
     len = line_count(fd,file);
-	img->map.len = len;
-    img->map.allocation = malloc(sizeof(char*) * len + 1);
+	img->map->len = len;
+    img->map->allocation = malloc(sizeof(char*) * len + 1);
     fd = open(file, O_RDONLY);
     while (i < len)
     {
-        img->map.allocation[i] = get_next_line(fd);
+        img->map->allocation[i] = get_next_line(fd);
         i++;
     }
-    img->map.allocation[i] = NULL;
+    img->map->allocation[i] = NULL;
 }
 
 
@@ -59,13 +59,13 @@ void put_walls(t_m *m, t_player *img, char *file)
 	
 	z = 0;
 	j = 0;
-	while (i < img->map.len)
+	while (i < img->map->len)
 	{
 		x = 0;
 		j = 0;
-		while (img->map.allocation[i][x] != '\n')
+		while (img->map->allocation[i][x] != '\n')
 		{
-			if(img->map.allocation[i][x] == '1')
+			if(img->map->allocation[i][x] == '1')
 			{
 				mlx_put_image_to_window(img->mlx, img->mlx_win,img->walls ,j, z);
 				j+= TILE_SIZE;

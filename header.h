@@ -56,6 +56,8 @@ typedef struct t_play
 	int		line_length;
     int     wall_hit_x;
     int     wall_hit_y;
+    int     v_wall_hit_x;
+    int     v_wall_hit_y;
     int     distance;
 	int		endian;
     float     ray_angle;
@@ -68,7 +70,11 @@ typedef struct t_play
     int yintercept;
     int xstep;
     int ystep;
-    t_m map;
+    double rotaion_speed;
+    int turn;
+    int walk;
+    int found_wall;
+    t_m *map;
 }t_player;
 
 
