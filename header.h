@@ -36,6 +36,30 @@ typedef struct t_struct{
     
 }t_m;
  
+typedef struct t_t{
+	
+    int     h_wall_hit_x;
+    int     h_wall_hit_y;
+    int     h_next_hor_x;
+    int     h_next_hor_y;
+    int     h_xintercept;
+    int     h_yintercept;
+    int     h_xstep;
+    int     h_ystep;
+    int     h_found_wall;
+
+    int     v_wall_hit_x;
+    int     v_wall_hit_y;
+    int     v_next_hor_x;
+    int     v_next_hor_y;
+    int     v_xintercept;
+    int     v_yintercept;
+    int     v_xstep;
+    int     v_ystep;
+    int     v_found_wall;
+    int     distance;
+}t_find;
+ 
  
 
 typedef struct t_play
@@ -54,27 +78,18 @@ typedef struct t_play
 	char	*p_img_red_line;
     int		bits_per_pixel;
 	int		line_length;
-    int     wall_hit_x;
-    int     wall_hit_y;
-    int     v_wall_hit_x;
-    int     v_wall_hit_y;
-    int     distance;
 	int		endian;
     float     ray_angle;
     float     x;
     float     y;
     double rotation_angle;
-    int next_hor_x;
-    int next_hor_y;
-    int xintercept;
-    int yintercept;
-    int xstep;
-    int ystep;
     double rotaion_speed;
     int turn;
     int walk;
-    int found_wall;
+    
     t_m *map;
+    t_find *find;
+
 }t_player;
 
 

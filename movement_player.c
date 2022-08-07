@@ -49,7 +49,7 @@ int	key_hook(int keycode, t_player *p)
     p->rotation_angle -= 2 * PI; 
   if (p->rotation_angle <= 0)
     p->rotation_angle += 2 * PI;
- 
+  
 	cast_ray(p);
 	return (0);
 }

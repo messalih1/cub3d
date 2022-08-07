@@ -13,9 +13,10 @@ int main(int argc, char *argv[])
 	 
 	play->mlx = mlx_init();
 	play->mlx_win = mlx_new_window(play->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Hello world!");
+     
 	put_walls(m,play,argv[1]);
   
-	play->found_wall = 0;
+	 
  	
 	palyer_movement(m,play);
 	
