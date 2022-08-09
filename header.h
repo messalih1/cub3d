@@ -37,26 +37,26 @@ typedef struct t_struct{
  
 typedef struct t_t{
 	
-    int     h_wall_hit_x;
-    int     h_wall_hit_y;
-    int     h_next_hor_x;
-    int     h_next_hor_y;
-    int     h_xintercept;
-    int     h_yintercept;
-    int     h_xstep;
-    int     h_ystep;
-    int     h_found_wall;
+    float     h_wall_hit_x;
+    float     h_wall_hit_y;
+    float     h_next_hor_x;
+    float     h_next_hor_y;
+    float     h_xintercept;
+    float     h_yintercept;
+    float     h_xstep;
+    float     h_ystep;
+    float     h_found_wall;
 
-    int     v_wall_hit_x;
-    int     v_wall_hit_y;
-    int     v_next_vir_x;
-    int     v_next_vir_y;
-    int     v_xintercept;
-    int     v_yintercept;
-    int     v_xstep;
-    int     v_ystep;
+    float     v_wall_hit_x;
+    float     v_wall_hit_y;
+    float     v_next_vir_x;
+    float     v_next_vir_y;
+    float     v_xintercept;
+    float     v_yintercept;
+    float     v_xstep;
+    float     v_ystep;
     int     v_found_wall;
-    int     distance;
+    float     distance;
 }t_find;
  
  

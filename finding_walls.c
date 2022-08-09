@@ -108,27 +108,36 @@ void find_walls(t_player *p)
     
     find_steps(is_face_up,p);
 }
+
+int point_in_range(float x, float y)
+{
+	return (x >= 0 && x < MAP_NUM_COLS && y >= 0 && y < MAP_NUM_ROWS);
+}
+
 void find_steps_(int is_face_l, t_player *p)
 {
      
-    // if(is_face_l)
-    //     p->find.v_next_vir_x--;
-    // while(1)
-    // {
-    //     if(p->lines[(int)(p->find.v_next_vir_y  / TILE_SIZE) ][(int)(p->find.v_next_vir_x / TILE_SIZE)] == '1')
-    //     {
-    //         p->find.v_found_wall = 1;
-    //         p->find.v_wall_hit_x = p->find.v_next_vir_x;
-    //         p->find.v_wall_hit_y = p->find.v_next_vir_y;
-    //         printf("WALLL\n");
-    //         break;
-    //     }
-    //     else
-    //     {
-    //         p->find.v_next_vir_y += p->find.v_ystep;
-    //         p->find.v_next_vir_x += p->find.v_xstep;
-    //     }
-    // } 
+    if(is_face_l)
+        p->find.v_next_vir_x--;
+
+    while(point_in_range((int)(p->find.v_next_vir_x  / TILE_SIZE), (int)(p->find.v_next_vir_y  / TILE_SIZE)))
+    {
+		// printf(">> %d >> %d\n",(int)(p->find.v_next_vir_y / TILE_SIZE),(int)(p->find.v_next_vir_x / TILE_SIZE));
+        if(p->lines[(int)(p->find.v_next_vir_y  / TILE_SIZE) ][(int)(p->find.v_next_vir_x / TILE_SIZE)] == '1')
+        {
+            p->find.v_found_wall = 1;
+            p->find.v_wall_hit_x = p->find.v_next_vir_x;
+            p->find.v_wall_hit_y = p->find.v_next_vir_y;
+            printf("WALLL\n");
+            break;
+        }
+        else
+        {
+            p->find.v_next_vir_y += p->find.v_ystep;
+            p->find.v_next_vir_x += p->find.v_xstep;
+		// printf(">> %f >> %f\n",p->find.v_ystep,p->find.v_xstep);
+        }
+    } 
 }
  
 
@@ -154,8 +163,10 @@ void find_walls_(t_player *p)
         p->find.v_xintercept += TILE_SIZE;
     p->find.v_xstep = TILE_SIZE;       
     p->find.v_ystep = TILE_SIZE * tan(p->ray_angle);
-    if(!p->find.v_ystep)
-        printf("WWW\n");
+	 
+	// printf(">> %f >> %f\n",tan(p->ray_angle),p->ray_angle);
+    
+	
     p->find.v_xstep *= is_face_l ? -1 : 1;
     p->find.v_ystep *=  (is_face_up && p->find.v_ystep > 0) ? -1 : 1;
     p->find.v_ystep *=  (is_face_down && p->find.v_ystep < 0) ? -1 : 1;
