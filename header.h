@@ -8,7 +8,7 @@
 # include <mlx.h>
 #include "libft/libft.h"
 #include <math.h>
-#include "mlx.h"
+
 #define PI 3.14159265358979323846
 
 #define BUFFER_SIZE 1
@@ -23,7 +23,7 @@
 #define WALL_STRIP_WIDTH 4
 #define NUM_RAYS WINDOW_WIDTH / WALL_STRIP_WIDTH
 
-typedef struct {
+typedef struct t_struct{
 	
     int fd;
     int i;
@@ -31,12 +31,11 @@ typedef struct {
     int x;
     int len;
     char *str;
-    char **allocation;
-    char **lines;
+    
     
 }t_m;
  
-typedef struct {
+typedef struct t_t{
 	
     int     h_wall_hit_x;
     int     h_wall_hit_y;
@@ -50,8 +49,8 @@ typedef struct {
 
     int     v_wall_hit_x;
     int     v_wall_hit_y;
-    int     v_next_hor_x;
-    int     v_next_hor_y;
+    int     v_next_vir_x;
+    int     v_next_vir_y;
     int     v_xintercept;
     int     v_yintercept;
     int     v_xstep;
@@ -86,9 +85,10 @@ typedef struct t_play
     double rotaion_speed;
     int turn;
     int walk;
+    char **lines;
     
-	t_m *map;
-	t_find *find;
+    t_m map;
+    t_find find;
 
 }t_player;
 
@@ -97,7 +97,7 @@ typedef struct t_play
 void cast_ray(t_player *p);
 void palyer_movement(t_m *m, t_player *img);
 int	line_count(int fd, char *file);
-void alloc_lines(t_player *m, char *file);
+char** alloc_lines(t_player *m, char *file);
 void put_walls(t_m *m, t_player *img, char *file);
 char	*free_tab(char *str, char c);
 char	*get_next_line(const int fd);

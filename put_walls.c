@@ -20,7 +20,7 @@ int	line_count(int fd, char *file)
 	return (x);
 }
 
-void alloc_lines(t_player *img, char *file)
+char **alloc_lines(t_player *img, char *file)
 {
     int len;
     int i;
@@ -29,29 +29,30 @@ void alloc_lines(t_player *img, char *file)
     i = 0;
     fd = open(file, O_RDONLY);
     len = line_count(fd,file);
-	img->map->len = len;
-    img->map->allocation = malloc(sizeof(char*) * len + 1);
+	img->map.len = len;
+    char **allocation = malloc(sizeof(char*) * len + 1);
     fd = open(file, O_RDONLY);
     while (i < len)
     {
-        img->map->allocation[i] = get_next_line(fd);
+         allocation[i] = get_next_line(fd);
         i++;
     }
-    img->map->allocation[i] = NULL;
+     allocation[i] = NULL;
+	return  allocation;
 }
 
 
 
 void put_walls(t_m *m, t_player *img, char *file)
 {
-	alloc_lines(img, file);
-	puts("SIG");
+	char **alloc = alloc_lines(img, file);
 	img->p_walls = "./wall.xpm";
 	img->p_img_black = "./black.xpm";
 	
 	img->walls =  mlx_xpm_file_to_image(img->mlx, img->p_walls, &img->line_length, &img->endian);
 	img->img_black =  mlx_xpm_file_to_image(img->mlx, img->p_img_black, &img->line_length, &img->endian);
  
+
 	int i = 0;
 	int x;
 	int j;
@@ -59,13 +60,13 @@ void put_walls(t_m *m, t_player *img, char *file)
 	
 	z = 0;
 	j = 0;
-	while (i < img->map->len)
+	while (i < img->map.len)
 	{
 		x = 0;
 		j = 0;
-		while (img->map->allocation[i][x] != '\n')
+		while (alloc[i][x] != '\n')
 		{
-			if(img->map->allocation[i][x] == '1')
+			if(alloc[i][x] == '1')
 			{
 				mlx_put_image_to_window(img->mlx, img->mlx_win,img->walls ,j, z);
 				j+= TILE_SIZE;
@@ -80,6 +81,6 @@ void put_walls(t_m *m, t_player *img, char *file)
 		z += TILE_SIZE;
 		i++;
 	}
-	 
+	img->lines = alloc;
 }
 

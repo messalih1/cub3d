@@ -1,9 +1,9 @@
 #include "header.h"
 
-//   turn_direcrtion -1 if left , +1 if rihgt
-//   walk_direcrtion -1 if back, +1 if front
-// moves_peed  fast of moving player pixel per freme
-// rotarion_speed pi / 180 => 0.001 * 3 rotaion => 3 degre  
+// //   turn_direcrtion -1 if left , +1 if rihgt
+// //   walk_direcrtion -1 if back, +1 if front
+// // moves_peed  fast of moving player pixel per freme
+// // rotarion_speed pi / 180 => 0.001 * 3 rotaion => 3 degre  
 
 
 
