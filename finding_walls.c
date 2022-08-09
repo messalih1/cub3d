@@ -91,9 +91,12 @@ void find_walls(t_player *p)
     int     is_face_l;
 
     p->ray_angle = p->rotation_angle;
+	// find first closest ponit horizontal
+
     p->find->h_yintercept = (int)(p->y / TILE_SIZE) * TILE_SIZE;
-  
     p->find->h_xintercept = p->x + ((p->y - p->find->h_yintercept) / tan(p->ray_angle)); 
+	
+	 	
     is_face_up = p->ray_angle >= 0 && p->ray_angle <= PI;
     is_face_down =  !is_face_up;
     is_face_r = cos(p->ray_angle) >= 0 ? 1 : 0;
@@ -116,23 +119,30 @@ void find_walls_(t_player *p)
     int     is_face_up;
     int     is_face_r;
     int     is_face_l;
+	
 
     p->ray_angle = p->rotation_angle;
+
+	// find first closest ponit vertical
     p->find->v_xintercept = (int)(p->x / TILE_SIZE) * TILE_SIZE;
     p->find->v_yintercept = p->y + ((p->find->v_xintercept - p->x) * tan(p->ray_angle)); 
     
-     
-    // is_face_up = p->ray_angle >= 0 && p->ray_angle <= PI;
-    // is_face_down =  !is_face_up;
-    // is_face_r = cos(p->ray_angle) >= 0 ? 1 : 0;
-    // is_face_l = !is_face_r;
-    // if(is_face_down)
-    //     p->find->v_yintercept += TILE_SIZE;
-    // p->find->v_ystep = TILE_SIZE;
-    // p->find->v_xstep =  (TILE_SIZE / tan(p->ray_angle));      
+	is_face_up = p->ray_angle >= 0 && p->ray_angle <= PI;
+    is_face_down =  !is_face_up;
+    is_face_r = cos(p->ray_angle) >= 0 ? 1 : 0;
+    is_face_l = !is_face_r;
+    if(is_face_r)
+        p->find->v_xintercept += TILE_SIZE;
+    p->find->v_xstep = TILE_SIZE;       
+    p->find->v_ystep = TILE_SIZE * tan(p->ray_angle);
+
+	// printf("%d\n",p->find->v_ystep);
+
+    // p->find->v_ystep *=  (is_face_up && p->find->v_ystep >  0) ? -1 : 1;
+    // p->find->v_ystep *=  (is_face_down && p->find->v_ystep < 0) ? -1 : 1;
+
     // p->find->v_ystep *=  is_face_up ? -1 : 1;
-    // p->find->v_xstep *=  (is_face_r && p->find->v_xstep < 0) ? -1 : 1;
-    // p->find->v_xstep *=  (is_face_l && p->find->v_xstep > 0) ? -1 : 1;
+    // p->find->v_xstep *=  is_face_l  ? -1 : 1;
     // p->find->v_next_hor_x = p->find->v_xintercept;
     // p->find->v_next_hor_y = p->find->v_yintercept;
      
@@ -142,8 +152,8 @@ void cast_ray(t_player *p)
 {
   
 
-    // find_walls(p);
-    find_walls_(p);
+    find_walls(p);
+    // find_walls_(p);
     
     
     // x_y_vertical_step(p);

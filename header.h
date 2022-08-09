@@ -8,7 +8,7 @@
 # include <mlx.h>
 #include "libft/libft.h"
 #include <math.h>
-
+#include "mlx.h"
 #define PI 3.14159265358979323846
 
 #define BUFFER_SIZE 1
@@ -23,7 +23,7 @@
 #define WALL_STRIP_WIDTH 4
 #define NUM_RAYS WINDOW_WIDTH / WALL_STRIP_WIDTH
 
-typedef struct t_struct{
+typedef struct {
 	
     int fd;
     int i;
@@ -36,7 +36,7 @@ typedef struct t_struct{
     
 }t_m;
  
-typedef struct t_t{
+typedef struct {
 	
     int     h_wall_hit_x;
     int     h_wall_hit_y;
@@ -87,8 +87,8 @@ typedef struct t_play
     int turn;
     int walk;
     
-    t_m *map;
-    t_find *find;
+	t_m *map;
+	t_find *find;
 
 }t_player;
 

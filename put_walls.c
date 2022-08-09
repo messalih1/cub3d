@@ -45,13 +45,13 @@ void alloc_lines(t_player *img, char *file)
 void put_walls(t_m *m, t_player *img, char *file)
 {
 	alloc_lines(img, file);
+	puts("SIG");
 	img->p_walls = "./wall.xpm";
 	img->p_img_black = "./black.xpm";
 	
 	img->walls =  mlx_xpm_file_to_image(img->mlx, img->p_walls, &img->line_length, &img->endian);
 	img->img_black =  mlx_xpm_file_to_image(img->mlx, img->p_img_black, &img->line_length, &img->endian);
  
-
 	int i = 0;
 	int x;
 	int j;
