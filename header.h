@@ -13,8 +13,8 @@
 
 #define BUFFER_SIZE 1
 #define TILE_SIZE 40
-#define MAP_NUM_ROWS 5
-#define MAP_NUM_COLS 8
+#define MAP_NUM_ROWS 12
+#define MAP_NUM_COLS 25
 
 #define WINDOW_WIDTH MAP_NUM_COLS * TILE_SIZE
 #define WINDOW_HEIGHT MAP_NUM_ROWS * TILE_SIZE
@@ -22,6 +22,8 @@
 #define FOV_ANGLE 60 * (PI / 180)
 #define WALL_STRIP_WIDTH 4
 #define NUM_RAYS WINDOW_WIDTH / WALL_STRIP_WIDTH
+
+#define MINIMAP_SCALE_FACTOR 0.2
 
 typedef struct t_struct{
 	
@@ -37,6 +39,8 @@ typedef struct t_struct{
  
 typedef struct t_t{
 	
+    int        wall_hit_x;
+    int        wall_hit_y;
     float     h_wall_hit_x;
     float     h_wall_hit_y;
     float     h_next_hor_x;
@@ -45,7 +49,7 @@ typedef struct t_t{
     float     h_yintercept;
     float     h_xstep;
     float     h_ystep;
-    float     h_found_wall;
+    int     h_found_wall;
 
     float     v_wall_hit_x;
     float     v_wall_hit_y;
@@ -92,8 +96,10 @@ typedef struct t_play
 
 }t_player;
 
-
-
+void ddadraw(float x,float y,float x1,float y1,t_player *t);
+int point_in_range(float x, float y);
+void vertical_intersection(t_player *p);
+void horizontal_intersection(t_player *p);
 void cast_ray(t_player *p);
 void palyer_movement(t_m *m, t_player *img);
 int	line_count(int fd, char *file);

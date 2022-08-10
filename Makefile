@@ -1,7 +1,7 @@
 NAME = cub3d
 CC = cc
 # CFLAGS = -Wall -Wextra -Werror
-SRC = main.c get_next_line.c put_walls.c movement_player.c finding_walls.c
+SRC = main.c get_next_line.c put_walls.c movement_player.c finding_walls.c vertical_intersection.c horizontal_intersection.c
  
 OBJ = $(SRC:.c=.o)
 
