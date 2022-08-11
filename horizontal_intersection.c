@@ -70,7 +70,7 @@ void horizontal_intersection(t_player *p)
     int     is_face_r;
     int     is_face_l;
 
-    p->ray_angle = p->rotation_angle;
+    
     p->find.h_yintercept = (int)(p->y / TILE_SIZE) * TILE_SIZE;
   
     p->find.h_xintercept = p->x + ((p->y - p->find.h_yintercept) / tan(p->ray_angle)); 

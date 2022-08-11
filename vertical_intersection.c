@@ -37,7 +37,7 @@ void vertical_intersection(t_player *p)
     int     is_face_r;
     int     is_face_l;
 
-     p->ray_angle = p->rotation_angle;
+    // p->ray_angle = p->rotation_angle;
 
 	// find first closest ponit vertical
     p->find.v_xintercept = (int)(p->x / TILE_SIZE) * TILE_SIZE;

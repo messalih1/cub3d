@@ -21,7 +21,7 @@
 
 #define FOV_ANGLE 60 * (PI / 180)
 #define WALL_STRIP_WIDTH 4
-#define NUM_RAYS WINDOW_WIDTH / WALL_STRIP_WIDTH
+#define NUM_OF_RAYS 60
 
 #define MINIMAP_SCALE_FACTOR 0.2
 
@@ -100,7 +100,7 @@ void ddadraw(float x,float y,float x1,float y1,t_player *t);
 int point_in_range(float x, float y);
 void vertical_intersection(t_player *p);
 void horizontal_intersection(t_player *p);
-void cast_ray(t_player *p);
+void intersections(t_player *p);
 void palyer_movement(t_m *m, t_player *img);
 int	line_count(int fd, char *file);
 char** alloc_lines(t_player *m, char *file);

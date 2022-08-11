@@ -50,7 +50,7 @@ int	key_hook(int keycode, t_player *p)
   if (p->rotation_angle <= 0)
     p->rotation_angle += 2 * PI;
   
-	cast_ray(p);
+	intersections(p);
 	return (0);
 }
 
