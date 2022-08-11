@@ -9,7 +9,7 @@ void ddadraw(float x,float y,float x1,float y1,t_player *t)
 
     int step;
 
-    if(dx > dy)
+    if(abs(dx) > abs(dy))
         step = abs(dx);
     else
         step = abs(dy);
@@ -19,16 +19,13 @@ void ddadraw(float x,float y,float x1,float y1,t_player *t)
 
     xc = dx/(float)step;
     yc = dy/(float)step;
-    int xs;
-    int ys;
-    xs = t->x;
-    ys = t->y;
-for (int i = 0; i <= step; i++)
-{
-    mlx_pixel_put(t->mlx,t->mlx_win,round(xs),round(ys),255);
-    xs += xc;
-    ys += yc;
-}
+    for (int i = 0; i <= step; i++)
+    {
+        mlx_pixel_put(t->mlx,t->mlx_win,round(x) / 6,round(y) / 4,255);
+        x += xc;
+        y += yc;
+    }
+
 }
 
 int point_in_range(float x, float y)
@@ -73,7 +70,7 @@ void horizontal_intersection(t_player *p)
     
     p->find.h_yintercept = (int)(p->y / TILE_SIZE) * TILE_SIZE;
   
-    p->find.h_xintercept = p->x + ((p->y - p->find.h_yintercept) / tan(p->ray_angle)); 
+    p->find.h_xintercept = p->x + (p->find.h_yintercept - (p->y)) / tan(p->ray_angle); 
     is_face_up = p->ray_angle >= 0 && p->ray_angle <= PI;
     is_face_down =  !is_face_up;
     is_face_r = cos(p->ray_angle) >= 0 ? 1 : 0;

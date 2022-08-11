@@ -43,9 +43,8 @@ char **alloc_lines(t_player *img, char *file)
 
 
 
-void put_walls(t_m *m, t_player *img, char *file)
+int put_walls(t_m *m, t_player *img, char *file)
 {
-	
 	char **alloc = alloc_lines(img, file);
 	img->p_walls = "./wall.xpm";
 	img->p_img_black = "./black.xpm";
@@ -69,12 +68,12 @@ void put_walls(t_m *m, t_player *img, char *file)
 		{
 			if(alloc[i][x] == '1')
 			{
-				mlx_put_image_to_window(img->mlx, img->mlx_win,img->walls ,j , z );
+				mlx_put_image_to_window(img->mlx, img->mlx_win,img->walls ,j / 6, z / 4 );
 				j+= TILE_SIZE;
 			}
 			else
 			{
-				mlx_put_image_to_window(img->mlx, img->mlx_win,img->img_black ,j , z );
+				mlx_put_image_to_window(img->mlx, img->mlx_win,img->img_black ,j / 6 , z / 4 );
 				j+= TILE_SIZE;
 			}	
 			x++;
@@ -84,6 +83,7 @@ void put_walls(t_m *m, t_player *img, char *file)
 		i++;
 	}
 	img->lines = alloc;
+	return(1);
 	
 }
 
