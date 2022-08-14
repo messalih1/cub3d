@@ -39,8 +39,8 @@ typedef struct t_struct{
  
 typedef struct t_t{
 	
-    int        wall_hit_x;
-    int        wall_hit_y;
+    int        *wall_hit_x;
+    int        *wall_hit_y;
     float     h_wall_hit_x;
     float     h_wall_hit_y;
     float     h_next_hor_x;
