@@ -21,7 +21,7 @@
 
 #define FOV_ANGLE 60 * (PI / 180)
 #define WALL_STRIP_WIDTH 4
-#define NUM_OF_RAYS 60
+#define NUM_OF_RAYS WINDOW_WIDTH
 
 #define MINIMAP_SCALE_FACTOR 0.2
 
@@ -67,7 +67,9 @@ typedef struct t_t{
 
 typedef struct t_play
 {
-    void	    *mlx;
+    void *img;
+    char	*addr;
+    void	   *mlx;
 	void	*mlx_win;
 	void	*walls;
 	char	*p_walls;

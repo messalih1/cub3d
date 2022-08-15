@@ -9,6 +9,7 @@ int  distance_calc(int x1,int y1,int x2,int y2)
 
 float  *cast_rays(t_player *p)
 {
+    printf("OOOOO\n");
     int i;
      float hor_distance;
     float vir_distance;
@@ -32,43 +33,43 @@ float  *cast_rays(t_player *p)
         p->find.wall_hit_y[i]  = (hor_distance < vir_distance) ? p->find.h_wall_hit_y : p->find.v_wall_hit_y;
         
         distance[i] =  (hor_distance < vir_distance) ? hor_distance : vir_distance;
-        p->ray_angle +=  FOV_ANGLE / NUM_OF_RAYS;
+        p->ray_angle += ( FOV_ANGLE / NUM_OF_RAYS);
         i++;
     }
     return  distance;
 }
- 
+// void	my_mlx_pixel_put(t_player *data, int x, int y, int color)
+// {
+// 	char	*dst;
+
+// 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+// 	*(unsigned int*)dst = color;
+// }
 void intersections(t_player *p)
 {
+    printf("EEEEE\n");
     float *distance = cast_rays(p);
      
     // int i = 0;
     // int j ,x;
-     
+
+      int i = 0;
+    int j ,x,y;
+      
     // while (i < NUM_OF_RAYS)
     // {
     //     float distance_project_plane = (WINDOW_WIDTH / 2) / tan(FOV_ANGLE / 2);
     //     float wall_strip_height = (TILE_SIZE / distance[i]) * distance_project_plane;
-    //     j = 1;
+        
 
-    //     int walltoppx = (WINDOW_WIDTH / 2) - (wall_strip_height / 2);
-    //     walltoppx =  walltoppx < 0 ? 0 : walltoppx;
-    //     int wallbotpx = (WINDOW_HEIGHT / 2) + (wall_strip_height / 2);
-    //     wallbotpx =  wallbotpx > WINDOW_HEIGHT ? WINDOW_HEIGHT : wallbotpx;
-
-    //     while(j <  walltoppx)// loop on the height
+    //     y =  WINDOW_HEIGHT / 2 - wall_strip_height / 2;
+    //     while (y < WINDOW_HEIGHT / 2 + wall_strip_height / 2)
     //     {
-    //         mlx_pixel_put(p->mlx,p->mlx_win,  p->find.wall_hit_x[i] +  j ,  p->find.wall_hit_y[i]   ,255);
-    //         j++;
-    //     }  
-        
-        
-
+    //         // my_mlx_pixel_put(p, p->find.wall_hit_x[y], y, 0xFF0000);
+    //         y++;
+    //     }
     //     i++;
     // }
-    
-
-
-
+  
 
 } 

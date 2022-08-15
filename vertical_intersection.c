@@ -13,7 +13,7 @@ static void find_steps_vertical(int is_face_l, t_player *p)
 
         if(p->lines[(int)(p->find.v_next_vir_y  / TILE_SIZE) ][(int)(p->find.v_next_vir_x / TILE_SIZE)] == '1')
         {
-        ddadraw(p->x,p->y,p->find.v_next_vir_x,p->find.v_next_vir_y,p);
+    
             p->find.v_found_wall = 1;
             p->find.v_wall_hit_x = p->find.v_next_vir_x;
             p->find.v_wall_hit_y = p->find.v_next_vir_y;

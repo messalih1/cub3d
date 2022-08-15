@@ -1,32 +1,6 @@
 #include "header.h"
 
-void ddadraw(float x,float y,float x1,float y1,t_player *t)
-{
-    int dx;
-    int dy;
-    dx = x1 - x;
-    dy = y1 - y;
-
-    int step;
-
-    if(abs(dx) > abs(dy))
-        step = abs(dx);
-    else
-        step = abs(dy);
-    
-    float xc;
-    float yc;
-
-    xc = dx/(float)step;
-    yc = dy/(float)step;
-    for (int i = 0; i <= step; i++)
-    {
-        mlx_pixel_put(t->mlx,t->mlx_win,round(x) / 6,round(y) / 4,255);
-        x += xc;
-        y += yc;
-    }
-
-}
+  
 
 int point_in_range(float x, float y)
 {
