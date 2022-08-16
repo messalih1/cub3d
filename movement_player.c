@@ -24,14 +24,14 @@ int	key_hook(int keycode, t_player *p)
 {
   if (keycode == 13)// w
   {
-    p->x += cos(p->rotation_angle) * 2;  
-    p->y += -sin(p->rotation_angle) * 2;       
+    p->x += cos(p->rotation_angle) * 2 * (02.5);  
+    p->y += -sin(p->rotation_angle) * 2 * (02.5);       
     // mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle, p->x / 6  ,p->y / 4);
   }
 	else if (keycode == 1)//s
   {
-    p->x += cos(p->rotation_angle) * -2; 
-    p->y += -sin(p->rotation_angle) * -2;       
+    p->x += cos(p->rotation_angle) * -2 * (02.5); 
+    p->y += -sin(p->rotation_angle) * -2 * (02.5);       
     // mlx_put_image_to_window(p->mlx, p->mlx_win,p->img_circle , p->x / 6, p->y / 4);
   }
   else if (keycode == 124)

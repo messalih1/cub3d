@@ -21,7 +21,7 @@
 
 #define FOV_ANGLE 60 * (PI / 180)
 #define WALL_STRIP_WIDTH 4
-#define NUM_OF_RAYS 200
+#define NUM_OF_RAYS 500
 
 #define MINIMAP_SCALE_FACTOR 0.2
 

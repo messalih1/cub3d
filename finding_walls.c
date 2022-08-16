@@ -11,7 +11,7 @@ float  *cast_rays(t_player *p)
 {
     
     int i;
-     float hor_distance;
+    float hor_distance;
     float vir_distance;
     float *distance;
 
@@ -53,35 +53,36 @@ void intersections(t_player *p)
     
     float *distance = cast_rays(p);
      
-    // int i = 0;
-    // int j ,x;
-
+     
     int i = 0;
+    int x = 0;
     int y;
-   
+
+    
+    int s = WINDOW_WIDTH / NUM_OF_RAYS;
     p->img = mlx_new_image(p->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	p->addr = mlx_get_data_addr(p->img, &p->bits_per_pixel, &p->line_length, &p->endian);
-    while (i < NUM_OF_RAYS)
+    while (x < WINDOW_WIDTH)
     {
         float distance_project_plane = (WINDOW_WIDTH / 2) / tan(FOV_ANGLE / 2);
         float wall_strip_height = (TILE_SIZE / distance[i]) * distance_project_plane;
-      
-        y =  (WINDOW_HEIGHT / 2) - (wall_strip_height / 2);
-        if(y < 0)
-            y = 100;
-            
-        while (y <  ((WINDOW_HEIGHT / 2 ) + (wall_strip_height / 2)))
+        if (x % s == 0 && x != 0)
+            i++;
+        y = 0;
+        // printf (">%f\n",distance[i]);
+        while (y < WINDOW_HEIGHT)
         {
-          
-            my_mlx_pixel_put(p, i , y, 255);
+            if (y >= (int)(WINDOW_HEIGHT / 2 - wall_strip_height / 2) && y <= (int)(WINDOW_HEIGHT / 2 + wall_strip_height / 2))
+                my_mlx_pixel_put(p, x , y, 0xabcdef);
+            if (y > (int)(WINDOW_HEIGHT / 2 + wall_strip_height / 2))
+                my_mlx_pixel_put(p, x , y, 0xfedcba);
+            if (y < (int)(WINDOW_HEIGHT / 2 - wall_strip_height / 2))
+                my_mlx_pixel_put(p, x , y, 0xfedcba);
             y++;
         }
         mlx_clear_window(p->mlx,p->mlx_win);
         mlx_put_image_to_window(p->mlx, p->mlx_win, p->img, 0, 0);
-        
-        
-        i++;
+        x++;
     }
-  
 
 } 
