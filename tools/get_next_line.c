@@ -1,4 +1,4 @@
-#include "header.h"
+#include "../includes/header.h"
 
 char	*free_tab(char	*str, char c)
 {
