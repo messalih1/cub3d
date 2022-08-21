@@ -16,24 +16,24 @@ int move_player(t_player *p)
 
 int	key_hook(int keycode, t_player *p)
 {
-    if(keycode == 2)// d
+    if(keycode == 0)// d
     {
         p->turn = -1;
         p->rotation_angle += p->turn * p->turn_speed;
     }
-    if(keycode == 0)// a
+    if(keycode == 2)// a
     {
         p->turn = +1;
         p->rotation_angle += p->turn * p->turn_speed;
     }
-    if(keycode == 13)// w
+    if(keycode == 1)// w
     {
         p->walk = -1;
         float move_step = p->walk * p->walk_speed;
         p->x += cos(p->rotation_angle) * move_step; 
         p->y += sin(p->rotation_angle) * move_step;
     }
-    if(keycode == 1)// s
+    if(keycode == 13)// s
     {
         p->walk = +1;
         float move_step = p->walk * p->walk_speed;

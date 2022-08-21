@@ -102,6 +102,7 @@ typedef struct t_play
     t_ver ver;
 }t_player;
 
+void rendering_walls(t_player *p);
 double  distance_calc(double x1,double y1,double x2,double y2);
 void vertical_intersections(t_player *p);
 void drawDDA(int xA,int yA,int xB,int yB,t_player *game);

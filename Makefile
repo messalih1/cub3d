@@ -7,6 +7,7 @@ SRC = main.c \
 	./mandatory/find_intersections.c \
 	./mandatory/horizontal_intersections.c \
 	./mandatory/vertical_intersections.c \
+	./mandatory/rendering_walls.c \
 	./tools/get_next_line.c \
  
 	
