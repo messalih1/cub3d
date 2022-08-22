@@ -7,31 +7,7 @@ int point_in_range(float x, float y)
 }
 
 
-
-void drawDDA(int xA,int yA,int xB,int yB,t_player *game)
-{
-printf("WWWW\n");
-    int dx = xB - xA;
-    int dy = yB - yA;
-
-    float step = fmaxf(abs(dx),abs(dy));
-    float xinc = dx/step;
-    float yinc = dy/step;
-
-    float x = xA,y = yA;
-
-    while (step >= 0)
-    {
-        // if(game->map[(int)y/16][(int)x/16] == '1')
-        //     break;
-        mlx_pixel_put(game->mlx,game->mlx_win,round(x),round(y),0xff3300);
-        x += xinc;
-        y += yinc;
-
-        step--;
-    }
-}
-
+ 
 
 void normalize_angle(t_player *p)
 {

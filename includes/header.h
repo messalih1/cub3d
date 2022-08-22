@@ -102,16 +102,14 @@ typedef struct t_play
     t_ver ver;
 }t_player;
 
+void alloc_lines(t_player *p);
 void rendering_walls(t_player *p);
 double  distance_calc(double x1,double y1,double x2,double y2);
 void vertical_intersections(t_player *p);
-void drawDDA(int xA,int yA,int xB,int yB,t_player *game);
 void horizontal_intersections(t_player *p);
 int point_in_range(float x, float y);
-void DDA(int X0, int Y0, int X1, int Y1,t_player *p);
 void find_intersections(t_player *p);
 void put_player(t_player *p);
-int     put_walls(t_player *p);
 int    moves_of_player(t_player *p);
 char	*free_tab(char *str, char c);
 char	*get_next_line(const int fd);

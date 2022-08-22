@@ -26,10 +26,8 @@ int main(int argc, char *argv[])
 	p->mlx = mlx_init();
 	p->mlx_win = mlx_new_window(p->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	
-	// in function of key hook create update(), evry click will update the screen
-	init_player_attributs(p);
+ 	init_player_attributs(p);
 	p->map.file = argv[1];
-    put_walls(p);
  
 	moves_of_player(p);
 

@@ -1,15 +1,11 @@
 #include "../includes/header.h"
 
- 
+
 
 int move_player(t_player *p)
 {
-    // mlx_clear_window(p->mlx,p->mlx_win);
-    
-    // drawDDA(p->x,p->y,p->x + cos(p->rotation_angle) * 60,p->y+sin(p->rotation_angle) * 60,p);
+    alloc_lines(p);
     find_intersections(p);
-    
-
     return 1;
 }
 
@@ -40,12 +36,6 @@ int	key_hook(int keycode, t_player *p)
         p->x += cos(p->rotation_angle) * move_step; 
         p->y += sin(p->rotation_angle) * move_step;
     }
-    // if (p->rotation_angle >= 2 * PI)
-    //     p->rotation_angle -= 2 * PI; 
-    // if (p->rotation_angle <= 0)
-    //     p->rotation_angle += 2 * PI;
-
- 
     move_player(p);
     return (0);
 }
