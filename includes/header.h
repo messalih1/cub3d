@@ -20,7 +20,7 @@
 #define WINDOW_WIDTH MAP_NUM_COLS * TILE_SIZE
 #define WINDOW_HEIGHT MAP_NUM_ROWS * TILE_SIZE
  
-#define WALL_STRIP_WIDTH 4
+ 
  
 
  
@@ -62,8 +62,21 @@ typedef struct t_v{
     int         found_wall;
     double     *distance;
     int i;
-
 }t_ver;
+ 
+typedef struct t_wall{
+
+    float wall_strip_height;
+    float distance_project_plane;
+    int wall_top_px;
+    int wall_bottom_px;
+    int roof_px;
+    int floor_px;
+    int i;
+    int x;
+    int wall_strip_width;
+
+}t_wall;
  
 
 typedef struct t_play
@@ -100,6 +113,7 @@ typedef struct t_play
     t_m map;
     t_hor hor;
     t_ver ver;
+    t_wall wall;
 }t_player;
 
 void alloc_lines(t_player *p);

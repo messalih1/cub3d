@@ -4,7 +4,7 @@
 
 void init_player_attributs(t_player  *p)
 {
-	p->x = 220;	
+	p->x = 500;	
 	p->y = 180;	
 	p->turn = 0;
 	p->walk = 0;
