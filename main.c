@@ -16,6 +16,26 @@ void init_player_attributs(t_player  *p)
 } 
 
 
+// unsigned int	img_color(t_img *t, int x, int y)
+// {
+// 	int		offset;
+// 	char	*img_pix;
+// 	uint32_t	color;
+// 	offset = y * t->sl + x * (t->bpp / 8);//memory offset (line_length differs from the actual window width)
+// 	img_pix = t->addr + offset;
+// 	if (!img_pix)
+// 	{
+// 		printf("Error in puting pixel's color!\n");
+// 		exit(0);
+// 	}
+// 	color = (((unsigned char)img_pix[2] << 16) + ((unsigned char)img_pix[1] << 8) + (unsigned char)img_pix[0]);
+// 	if (color)
+// 		return (color);
+// 	else
+// 		return ((unsigned int)4732952);
+// }
+
+
  
 int main(int argc, char *argv[])
 {
@@ -23,14 +43,17 @@ int main(int argc, char *argv[])
 	t_player pl;
 	t_player  *p = &pl;
  
-	p->mlx = mlx_init();
-	p->mlx_win = mlx_new_window(p->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
+	alloc_pixels(p);
+
+	p->mlx.mlx = mlx_init();
+	p->mlx.mlx_win = mlx_new_window(p->mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	
+
  	init_player_attributs(p);
 	p->map.file = argv[1];
  
 	moves_of_player(p);
 
-	mlx_loop(p->mlx);
+	mlx_loop(p->mlx.mlx);
     return 0;
 }

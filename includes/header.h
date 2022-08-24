@@ -20,7 +20,8 @@
 #define WINDOW_WIDTH MAP_NUM_COLS * TILE_SIZE
 #define WINDOW_HEIGHT MAP_NUM_ROWS * TILE_SIZE
  
- 
+#define TEXTURE_WIDTH 64
+#define TEXTURE_HEIGHT 64
  
 
  
@@ -78,11 +79,12 @@ typedef struct t_wall{
 
 }t_wall;
  
+typedef struct t_mini{
 
-typedef struct t_play
-{
     void    *img;
     char	*addr;
+    void    *img_px;
+    char	*addr_px;
     void	 *mlx;
 	void	*mlx_win;
 	void	*walls;
@@ -97,7 +99,16 @@ typedef struct t_play
 	char	*p_img_red_line;
     int		bits_per_pixel;
 	int		line_length;
-	int		endian;
+	int		endian;  
+    int sl;
+    int l;   
+    int bpp;
+
+}t_mlx;
+
+typedef struct t_play
+{
+    
     double     ray_angle;
     double     x;
     double     y;
@@ -107,22 +118,30 @@ typedef struct t_play
     int walk;
     int walk_speed;
     char **lines;
+    char **pixels;
     double     *distance;
     int     num_of_rays;
     double fov_angle;
+    int *if_is_vertical;
+    double *px;
+    double *py;
+    char *text_px;
     t_m map;
     t_hor hor;
     t_ver ver;
     t_wall wall;
+    t_mlx mlx;
 }t_player;
 
+void alloc_pixels(t_player *p);
+int	line_count(int fd);
 void alloc_lines(t_player *p);
 void rendering_walls(t_player *p);
 double  distance_calc(double x1,double y1,double x2,double y2);
 void vertical_intersections(t_player *p);
 void horizontal_intersections(t_player *p);
 int point_in_range(float x, float y);
-void find_intersections(t_player *p);
+void find_intersections(t_player *p, int i);
 void put_player(t_player *p);
 int    moves_of_player(t_player *p);
 char	*free_tab(char *str, char c);

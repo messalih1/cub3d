@@ -5,7 +5,18 @@
 int move_player(t_player *p)
 {
     alloc_lines(p);
-    find_intersections(p);
+
+     
+    p->distance = malloc(sizeof(double) * p->num_of_rays);
+    p->ver.distance = malloc(sizeof(double) * p->num_of_rays);
+    p->hor.distance = malloc(sizeof(double) * p->num_of_rays);
+    p->px = malloc(sizeof(double) * p->num_of_rays);
+    p->py = malloc(sizeof(double) * p->num_of_rays);
+    p->if_is_vertical = malloc(sizeof(int) * p->num_of_rays);
+    p->ver.i = 0;
+    p->hor.i = 0;
+    p->ray_angle = p->rotation_angle - (p->fov_angle / 2);
+    find_intersections(p,0);
     return 1;
 }
 
@@ -74,8 +85,8 @@ int	key_hook_relese(int keycode, t_player *p)
 int moves_of_player(t_player *p)
 {
      
-    mlx_hook(p->mlx_win, 02, 1L<<0, key_hook, p);
-    mlx_hook(p->mlx_win, 03, 1L<<1, key_hook_relese, p);
+    mlx_hook(p->mlx.mlx_win, 02, 1L<<0, key_hook, p);
+    mlx_hook(p->mlx.mlx_win, 03, 1L<<1, key_hook_relese, p);
      
 
     return 1;

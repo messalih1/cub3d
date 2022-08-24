@@ -4,7 +4,7 @@ void	my_mlx_pixel_put(t_player *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = data->mlx.addr + (y * data->mlx.line_length + x * (data->mlx.bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
 
@@ -31,18 +31,41 @@ static void draw_floor_roof(t_player *p)
 
 static void init_rend(t_player *p)
 {
+    int x;
+    int y;
+
     p->wall.wall_strip_width = WINDOW_WIDTH / p->num_of_rays;
-    p->img = mlx_new_image(p->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	p->addr = mlx_get_data_addr(p->img, &p->bits_per_pixel, &p->line_length, &p->endian);
+    p->mlx.img = mlx_new_image(p->mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	p->mlx.addr = mlx_get_data_addr(p->mlx.img, &p->mlx.bits_per_pixel, &p->mlx.line_length, &p->mlx.endian);
     p->wall.i = 0;
     p->wall.x = 0;
+    p->mlx.img_px = mlx_xpm_file_to_image(p->mlx.mlx,"./iamge2.xpm", &x, &y);
+	p->mlx.addr_px = mlx_get_data_addr(p->mlx.img_px, &p->mlx.bpp, &p->mlx.sl, &p->mlx.l);
 }
+
+
+unsigned int texture_(t_player *p)
+{
+    uint32_t *wall_texture;
+    int x;
+    int y;
+								// x and y of texture 		
+	// img_color(&r->img[r->img_n], r->texx, r->texy);
+
+
+    // return px from texture
+    
+     
+    
+}
+
 
 void rendering_walls(t_player *p)
 {
     int y;
     char	*dst;
     init_rend(p);
+    texture_(p);
     while (p->wall.x < WINDOW_WIDTH)
     {
         p->wall.distance_project_plane = (WINDOW_WIDTH / 2) / tan(p->fov_angle / 2);
@@ -54,20 +77,19 @@ void rendering_walls(t_player *p)
         p->wall.wall_bottom_px =   (WINDOW_HEIGHT / 2 + p->wall.wall_strip_height / 2); 
         p->wall.wall_bottom_px = p->wall.wall_bottom_px  > WINDOW_HEIGHT ? WINDOW_HEIGHT : p->wall.wall_bottom_px;// protection
         y = p->wall.wall_top_px;
+
         while (y <  p->wall.wall_bottom_px)
         {
-            dst = p->addr + (y * p->line_length + p->wall.x * (p->bits_per_pixel / 8));
-            if(p->wall.x % 8 && y % 8)
-                *(unsigned int*)dst = 0xabcdef;
-            else
-                *(unsigned int*)dst = 0x000000;
+            dst = p->mlx.addr + (y * p->mlx.line_length + p->wall.x * (p->mlx.bits_per_pixel / 8));
+            
+            *(unsigned int*)dst = texture_(p);
             y++;
         }
-        draw_floor_roof(p);
+        // draw_floor_roof(p);
         p->wall.x++;
     }
     // mlx_clear_w indow(p->mlx,p->mlx_win);
-    mlx_put_image_to_window(p->mlx, p->mlx_win, p->img, 0, 0);
+    mlx_put_image_to_window(p->mlx.mlx, p->mlx.mlx_win, p->mlx.img, 0, 0);
 
 }
 
