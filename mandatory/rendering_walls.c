@@ -43,33 +43,29 @@ void rendering_walls(t_player *p)
 {
     int i,j,h;
     int y;
+    int width;
     int     x_offset;
     int     y_offset;
     char	*dst;
     char	*src;
+    int distance_from_top; 
 
-    h = init_rend(p); 
+    width = init_rend(p); 
     while (p->wall.x < WINDOW_WIDTH)
     {
         return_y(p);
         y = p->wall.wall_top_px;
         if(p->if_is_vertical[p->wall.i])
-        {
-            x_offset = (int)p->py[p->wall.i] % TILE_SIZE;
-            i = (fmod(p->py[p->wall.i], 64)) * (h / 64);
-        }
+            x_offset = (fmod(p->py[p->wall.i], TILE_SIZE)) * (width / TILE_SIZE);
         else
-        {
-            x_offset = (int)p->px[p->wall.i] % TILE_SIZE;
-            i = (fmod(p->px[p->wall.i], 64)) * (h / 64);
-        }
+            x_offset = (fmod(p->px[p->wall.i], TILE_SIZE)) * (width / TILE_SIZE);
 
         while (y <  p->wall.wall_bottom_px)
         { 
-            y_offset = (y - p->wall.wall_top_px) * ( (64 / p->wall.wall_strip_height));
-            j = (y - p->wall.wall_top_px) * ( (h / p->wall.wall_strip_height));
+            distance_from_top = (y + (p->wall.wall_strip_height / 2) - (WINDOW_HEIGHT / 2));
+            y_offset = distance_from_top * ( (width / p->wall.wall_strip_height));
             dst = p->mlx.addr + (y * p->mlx.line_length + p->wall.x * (p->mlx.bits_per_pixel / 8));
-            src = p->mlx.addr_px + (j * p->mlx.sl + i * (p->mlx.bpp / 8));
+            src = p->mlx.addr_px + (y_offset * p->mlx.sl + x_offset * (p->mlx.bpp / 8));
         
             *(unsigned int*)dst =  *(unsigned int*)src; 
            
