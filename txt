@@ -1,134 +1,32 @@
-"   c #652303",
-".  c #6C2706",
-"X  c #6A2906",
-"o  c #66260A",
-"O  c #68260A",
-"+  c #662A0D",
-"@  c #6C2C0D",
-"#  c #722E0E",
-"$  c #6E300F",
-"%  c #73310E",
-"&  c #6C2E11",
-"*  c #712F12",
-"=  c #792F14",
-"-  c #6E3114",
-";  c #6E321A",
-":  c #733314",
-">  c #7B3515",
-",  c #743816",
-"<  c #7B3916",
-"1  c #73351A",
-"2  c #793619",
-"3  c #76391B",
-"4  c #7F3A19",
-"5  c #7C3A1A",
-"6  c #7C3B1B",
-"7  c #7E3A18",
-"8  c #7E3C19",
-"9  c #7E3E1A",
-"0  c #78381C",
-"q  c #79381C",
-"w  c #79391D",
-"e  c #7A391D",
-"r  c #783B1C",
-"t  c #7B3A1C",
-"y  c #7A3B1C",
-"u  c #783B1E",
-"i  c #783B1F",
-"p  c #7B3A1E",
-"a  c #7C3B1F",
-"s  c #793C1D",
-"d  c #7B3C1D",
-"f  c #7D3C1C",
-"g  c #7E3C1C",
-"h  c #7E3D1D",
-"j  c #7F3D1D",
-"k  c #7F3F1C",
-"l  c #7D3C1E",
-"z  c #7C3D1E",
-"x  c #7F3E1E",
-"c  c #7C3A1C",
-"v  c #763821",
-"b  c #793C20",
-"n  c #7A3D20",
-"m  c #7A3D21",
-"M  c #7B3E21",
-"N  c #7B3E22",
-"B  c #7C3C20",
-"V  c #7D3C20",
-"C  c #7D3D21",
-"Z  c #7C3F22",
-"A  c #7E3E22",
-"S  c #7E3D21",
-"D  c #7C401E",
-"F  c #7D4023",
-"G  c #7D4024",
-"H  c #7F4225",
-"J  c #7F4321",
-"K  c #803717",
-"L  c #813815",
-"P  c #823916",
-"I  c #813B19",
-"U  c #803B1A",
-"Y  c #813D1A",
-"T  c #813C1B",
-"R  c #823C1A",
-"E  c #833D1B",
-"W  c #823E1B",
-"Q  c #853C19",
-"!  c #823D1C",
-"~  c #803E1E",
-"^  c #843E1C",
-"/  c #853F1D",
-"(  c #823C1D",
-")  c #883F1F",
-"_  c #803F21",
-"`  c #813E21",
-"'  c #893F24",
-"]  c #82401E",
-"[  c #87411D",
-"{  c #85411E",
-"}  c #87411F",
-"|  c #84421F",
-" . c #86421F",
-".. c #84401F",
-"X. c #89401D",
-"o. c #8A411E",
-"O. c #8B421F",
-"+. c #804120",
-"@. c #824020",
-"#. c #834121",
-"$. c #824123",
-"%. c #864120",
-"&. c #874320",
-"*. c #874221",
-"=. c #844222",
-"-. c #854323",
-";. c #844421",
-":. c #854521",
-">. c #804024",
-",. c #814125",
-"<. c #824226",
-"1. c #814427",
-"2. c #864424",
-"3. c #874525",
-"4. c #854123",
-"5. c #8C4320",
-"6. c #884421",
-"7. c #894423",
-"8. c #884623",
-"9. c #8D4421",
-"0. c #8A4524",
-"q. c #894724",
-"w. c #8B4625",
-"e. c #884727",
-"r. c #894727",
-"t. c #894224",
-"y. c #814428",
-"u. c #824528",
-"i. c #864529",
-"p. c #8B4629",
-"a. c #85482B",
-"s. c #8A4828",
-"d. c #8D482B",
-"f. c #904B2E",
+if(p->if_is_vertical[p->wall.i])
+        { 
+
+            y_offset = (int)p->py[p->wall.i] % TILE_SIZE;
+            x_offset = 0;
+            while (y <  p->wall.wall_bottom_px)
+            {
+                dst = p->mlx.addr + (y * p->mlx.line_length + p->wall.x * (p->mlx.bits_per_pixel / 8));
+                src = p->mlx.addr_px + (y_offset * p->mlx.sl + x_offset * (p->mlx.bpp / 8));
+            
+                *(unsigned int*)dst =  *(unsigned int*)src;// return the px color
+                
+                    x_offset++;
+                y++;
+            }
+        }
+        else
+        {
+            x_offset = (int)p->px[p->wall.i] % TILE_SIZE;
+            y_offset = 0;
+            while (y <  p->wall.wall_bottom_px)
+            {
+                dst = p->mlx.addr + (y * p->mlx.line_length + p->wall.x * (p->mlx.bits_per_pixel / 8));
+                src = p->mlx.addr_px + (y_offset * p->mlx.sl + x_offset * (p->mlx.bpp / 8));
+                
+                *(unsigned int*)dst =  *(unsigned int*)src;// return the px color
+                 
+                    y_offset++;
+               y++;
+            }
+        }
+        

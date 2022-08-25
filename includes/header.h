@@ -12,7 +12,7 @@
 #define PI 3.14159265358979323846
 #define BUFFER_SIZE 1
 
-#define TILE_SIZE 40
+#define TILE_SIZE 64
 
 #define MAP_NUM_ROWS 14
 #define MAP_NUM_COLS 33
