@@ -38,7 +38,7 @@ void find_intersections(t_player *p, int i)
         }
         else
         {
-            p->if_is_vertical[i] = 1;
+            p->if_is_vertical[i] = 0;
             p->px[i] = p->hor.wall_hit_x; 
             p->py[i] = p->hor.wall_hit_y;
         }

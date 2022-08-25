@@ -43,10 +43,11 @@ int main(int argc, char *argv[])
 	t_player pl;
 	t_player  *p = &pl;
  
-	alloc_pixels(p);
-
+ 
 	p->mlx.mlx = mlx_init();
 	p->mlx.mlx_win = mlx_new_window(p->mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
+	
+ 
 	
 
  	init_player_attributs(p);
