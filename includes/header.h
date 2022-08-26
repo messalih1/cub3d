@@ -85,25 +85,20 @@ typedef struct t_mini{
     char	*addr;
     void    *img_px;
     char	*addr_px;
+    void    *img_px_2;
+    char	*addr_px_2;
     void	 *mlx;
 	void	*mlx_win;
-	void	*walls;
-	char	*p_walls;
-    void	*img_black;
-    char	*p_img_black;
-	void	*img_circle;
-	char	*p_img_circle;
-	void	*img_red_line;
-	void	*img_black_line;
-	char	*p_img_black_line;
-	char	*p_img_red_line;
     int		bits_per_pixel;
 	int		line_length;
 	int		endian;  
     int sl;
     int l;   
     int bpp;
-
+    int sl2;
+    int l2;   
+    int bpp2;
+    
 }t_mlx;
 
 typedef struct t_play
@@ -126,6 +121,8 @@ typedef struct t_play
     double *px;
     double *py;
     char *text_px;
+    double *angle_ray;
+    int width;
     t_m map;
     t_hor hor;
     t_ver ver;

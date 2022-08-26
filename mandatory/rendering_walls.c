@@ -23,7 +23,8 @@ static int init_rend(t_player *p)
 {
     int x;
     int y;
-
+    int x2;
+    int y2; 
     p->wall.wall_strip_width = WINDOW_WIDTH / p->num_of_rays;
 
     p->mlx.img = mlx_new_image(p->mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -31,6 +32,12 @@ static int init_rend(t_player *p)
     
     p->mlx.img_px = mlx_xpm_file_to_image(p->mlx.mlx,"./img.xpm", &x, &y);
 	p->mlx.addr_px = mlx_get_data_addr(p->mlx.img_px, &p->mlx.bpp, &p->mlx.sl, &p->mlx.l);
+
+    p->mlx.img_px_2 = mlx_xpm_file_to_image(p->mlx.mlx,"./mossy.xpm", &x2, &y2);
+	p->mlx.addr_px_2 = mlx_get_data_addr(p->mlx.img_px_2, &p->mlx.bpp2, &p->mlx.sl2, &p->mlx.l2);
+    
+
+    p->width = x2;
     p->wall.i = 0;
     p->wall.x = 0;
     return (x);
@@ -39,9 +46,15 @@ static int init_rend(t_player *p)
 	 
 
 
+void normalize_(t_player *p)
+{
+    if (p->rotation_angle >= 2 * PI)
+        p->rotation_angle -= 2 * PI; 
+    if (p->rotation_angle <= 0)
+        p->rotation_angle += 2 * PI;
+}
 void rendering_walls(t_player *p)
 {
-    int i,j,h;
     int y;
     int width;
     int     x_offset;
@@ -50,27 +63,56 @@ void rendering_walls(t_player *p)
     char	*src;
     int distance_from_top; 
 
-    width = init_rend(p); 
+    width = init_rend(p);  
     while (p->wall.x < WINDOW_WIDTH)
     {
         return_y(p);
         y = p->wall.wall_top_px;
-        if(p->if_is_vertical[p->wall.i])
-            x_offset = (fmod(p->py[p->wall.i], TILE_SIZE)) * (width / TILE_SIZE);
-        else
-            x_offset = (fmod(p->px[p->wall.i], TILE_SIZE)) * (width / TILE_SIZE);
-
+        int up = (p->rotation_angle < PI / 2 || p->rotation_angle > (3 * PI) / 2);
+        normalize_(p);
         while (y <  p->wall.wall_bottom_px)
         { 
-            distance_from_top = (y + (p->wall.wall_strip_height / 2) - (WINDOW_HEIGHT / 2));
-            y_offset = distance_from_top * ( (width / p->wall.wall_strip_height));
-            dst = p->mlx.addr + (y * p->mlx.line_length + p->wall.x * (p->mlx.bits_per_pixel / 8));
-            src = p->mlx.addr_px + (y_offset * p->mlx.sl + x_offset * (p->mlx.bpp / 8));
-        
-            *(unsigned int*)dst =  *(unsigned int*)src; 
-           
+            if(up)
+            {
+                if(p->if_is_vertical[p->wall.i])
+                    x_offset = (fmod(p->py[p->wall.i], TILE_SIZE)) * (width / TILE_SIZE);
+                else
+                    x_offset = (fmod(p->px[p->wall.i], TILE_SIZE)) * (width / TILE_SIZE);
+                
+                distance_from_top = (y + (p->wall.wall_strip_height / 2) - (WINDOW_HEIGHT / 2));
+                y_offset = distance_from_top * ( (width / p->wall.wall_strip_height));
+                dst = p->mlx.addr + (y * p->mlx.line_length + p->wall.x * (p->mlx.bits_per_pixel / 8));
+                src = p->mlx.addr_px + (y_offset * p->mlx.sl + x_offset * (p->mlx.bpp / 8));
+                *(unsigned int*)dst =  *(unsigned int*)src; 
+            }
+            else if(!up)
+            {
+                if(p->if_is_vertical[p->wall.i])
+                    x_offset = (fmod(p->py[p->wall.i], TILE_SIZE)) * (p->width / TILE_SIZE);
+                else
+                    x_offset = (fmod(p->px[p->wall.i], TILE_SIZE)) * (p->width / TILE_SIZE);
+                distance_from_top = (y + (p->wall.wall_strip_height / 2) - (WINDOW_HEIGHT / 2));
+                y_offset = distance_from_top * ( (p->width / p->wall.wall_strip_height));
+                dst = p->mlx.addr + (y * p->mlx.line_length + p->wall.x * (p->mlx.bits_per_pixel / 8));
+                src = p->mlx.addr_px_2 + (y_offset * p->mlx.sl2 + x_offset * (p->mlx.bpp2 / 8));
+                *(unsigned int*)dst =  *(unsigned int*)src; 
+            }
             y++;
         }
+        // else if(!up)
+        // {
+        //     while (y <  p->wall.wall_bottom_px)
+        //     { 
+        //         if(p->if_is_vertical[p->wall.i])
+        //             x_offset = (fmod(p->py[p->wall.i], TILE_SIZE)) * (p->width / TILE_SIZE);
+        //         else
+        //             x_offset = (fmod(p->px[p->wall.i], TILE_SIZE)) * (p->width / TILE_SIZE);
+                
+        //         y++;
+        //     }
+
+        // }
+       
         draw_floor_roof(p);
         p->wall.x++;
     }

@@ -16,6 +16,7 @@ int move_player(t_player *p)
     p->ver.i = 0;
     p->hor.i = 0;
     p->ray_angle = p->rotation_angle - (p->fov_angle / 2);
+    p->angle_ray = malloc(sizeof(double) * p->num_of_rays);
     find_intersections(p,0);
     return 1;
 }
