@@ -52,17 +52,15 @@ int	key_hook(int keycode, t_player *p)
     }
     if(keycode == 0)// a
     {
-        p->walk = -1;
-        float move_step = p->walk * p->walk_speed;
-        p->x += cos(p->rotation_angle += PI / 2) * move_step; 
-        p->y += sin(p->rotation_angle += PI / 2) * move_step;
+        p->move = -1;
+        float move_step = p->move * p->walk_speed;
+        p->x += cos(p->rotation_angle) + move_step;
     }
     if(keycode == 2) // d
     {
-        p->walk = +1;
-        float move_step = p->walk * p->walk_speed;
-        p->x += cos(p->rotation_angle += PI / 2) * move_step; 
-        p->y += sin(p->rotation_angle += PI / 2) * move_step;
+        p->move = +1;
+        float move_step = p->move * p->walk_speed;
+        p->x += cos(p->rotation_angle) + move_step;
     }
     move_player(p);
     return (0);

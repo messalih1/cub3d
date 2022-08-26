@@ -111,6 +111,7 @@ typedef struct t_play
     double turn_speed;
     int turn;
     int walk;
+    int move;
     int walk_speed;
     char **lines;
     char **pixels;

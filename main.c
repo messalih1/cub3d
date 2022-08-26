@@ -8,6 +8,7 @@ void init_player_attributs(t_player  *p)
 	p->y = 180;	
 	p->turn = 0;
 	p->walk = 0;
+	p->move = 0;
 	p->rotation_angle = PI / 2;
 	p->walk_speed = 5;
 	p->turn_speed = 4 * (PI / 180);// 4 degres

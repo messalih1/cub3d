@@ -99,24 +99,9 @@ void rendering_walls(t_player *p)
             }
             y++;
         }
-        // else if(!up)
-        // {
-        //     while (y <  p->wall.wall_bottom_px)
-        //     { 
-        //         if(p->if_is_vertical[p->wall.i])
-        //             x_offset = (fmod(p->py[p->wall.i], TILE_SIZE)) * (p->width / TILE_SIZE);
-        //         else
-        //             x_offset = (fmod(p->px[p->wall.i], TILE_SIZE)) * (p->width / TILE_SIZE);
-                
-        //         y++;
-        //     }
-
-        // }
-       
         draw_floor_roof(p);
         p->wall.x++;
     }
-    // mlx_clear_window(p->mlx.mlx,p->mlx.mlx_win);
     mlx_put_image_to_window(p->mlx.mlx, p->mlx.mlx_win, p->mlx.img, 0, 0);
 
 }
