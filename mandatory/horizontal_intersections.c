@@ -10,9 +10,10 @@ void wall_intersect_horizontal(t_player *p, int if_is_facing_up)
     
     // loop to find wall
     p->hor.found_wall = 0;
-    int i = 0;
-    while (p->hor.next_x >=  0 &&  p->hor.next_x < WINDOW_WIDTH && p->hor.next_y >=  0 && p->hor.next_y < WINDOW_HEIGHT )
+    while (point_in_range(p->hor.next_x,p->hor.next_y))
     {
+       
+
         if(p->lines[(int)(p->hor.next_y / TILE_SIZE)][(int)(p->hor.next_x / TILE_SIZE)] == '1')
         {
             p->hor.found_wall = 1;
@@ -26,7 +27,6 @@ void wall_intersect_horizontal(t_player *p, int if_is_facing_up)
             p->hor.next_y += p->hor.y_step;
             p->hor.next_x += p->hor.x_step;
         }
-        i++;
     }
      
     p->hor.distance[p->hor.i] = (p->hor.found_wall) ? distance_calc(p->x,p->y,p->hor.next_x,p->hor.next_y) : 10000000.444;

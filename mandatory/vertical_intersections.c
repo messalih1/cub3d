@@ -11,7 +11,7 @@ void    wall_intersect_vertical(t_player *p,int if_is_facing_left)
         p->ver.next_x--;
  
     p->ver.found_wall = 0;
-    while (p->ver.next_x >=  0 &&  p->ver.next_x <=  WINDOW_WIDTH && p->ver.next_y >=  0 && p->ver.next_y <=  WINDOW_HEIGHT )
+    while (point_in_range(p->ver.next_x,p->ver.next_y))
     {
         if(p->lines[(int)(p->ver.next_y / TILE_SIZE)][(int)(p->ver.next_x / TILE_SIZE)] == '1')
         {

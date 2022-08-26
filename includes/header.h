@@ -131,7 +131,7 @@ typedef struct t_play
     t_mlx mlx;
 }t_player;
 
-
+int point_in_range(float x, float y);
 void	my_mlx_pixel_put(t_player *data, int x, int y, int color);
 void draw_floor_roof(t_player *p);
 void alloc_pixels(t_player *p);
