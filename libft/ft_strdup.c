@@ -3,35 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: tnamir <tnamir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 16:54:44 by asalek            #+#    #+#             */
-/*   Updated: 2021/11/10 18:46:37 by asalek           ###   ########.fr       */
+/*   Created: 2021/11/04 18:12:15 by tnamir            #+#    #+#             */
+/*   Updated: 2021/11/14 15:39:11 by tnamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-char	*ft_strcpy(char *dest, char *src)
+#include"libft.h"
+
+char	*ft_strdup(const char	*s)
 {
-	int	c;
+	char		*p;
+	size_t		x;
+	size_t		y;
 
-	c = 0;
-	while (src[c] != '\0')
+	x = 0;
+	y = 0;
+	while (s[x])
 	{
-		dest[c] = src[c];
-		c++;
+		x++;
 	}
-	dest[c] = '\0';
-	return (dest);
-}
-
-char	*ft_strdup(char *src)
-{
-	char	*dest;
-
-	dest = malloc((ft_strlen(src) + 1) * sizeof(char));
-	if (dest)
-		return (ft_strcpy(dest, src));
-	else
-		return (NULL);
+	p = malloc(x * sizeof(char) + 1);
+	if (p == NULL)
+		return (0);
+	while (y < x)
+	{
+		p[y] = s[y];
+		y++;
+	}
+	p[y] = 0;
+	return ((char *)p);
 }

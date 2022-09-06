@@ -6,8 +6,12 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <mlx.h>
-#include "../libft/libft.h"
 #include <math.h> 
+
+#include "../libft/libft.h"
+#include "../map/map.h"
+#include "../gnl/get_next_line.h"
+
 
 #define PI 3.14159265358979323846
 #define BUFFER_SIZE 1
@@ -129,14 +133,13 @@ typedef struct t_play
     t_ver ver;
     t_wall wall;
     t_mlx mlx;
+    t_cub_info	cub_info;
 }t_player;
 
 int point_in_range(float x, float y);
 void	my_mlx_pixel_put(t_player *data, int x, int y, int color);
 void draw_floor_roof(t_player *p);
 void alloc_pixels(t_player *p);
-int	line_count(int fd);
-void alloc_lines(t_player *p);
 void rendering_walls(t_player *p);
 double  distance_calc(double x1,double y1,double x2,double y2);
 void vertical_intersections(t_player *p);
@@ -145,10 +148,10 @@ int point_in_range(float x, float y);
 void find_intersections(t_player *p, int i);
 void put_player(t_player *p);
 int    moves_of_player(t_player *p);
-char	*free_tab(char *str, char c);
-char	*get_next_line(const int fd);
-char	is_newline_endof_str(char c);
-char	*ft_realloc(char *ptr, size_t size);
-char	get_a_char(int fd);
+// char	*free_tab(char *str, char c);
+// char	*get_next_line(const int fd);
+// char	is_newline_endof_str(char c);
+// char	*ft_realloc(char *ptr, size_t size);
+// char	get_a_char(int fd);
 
 #endif

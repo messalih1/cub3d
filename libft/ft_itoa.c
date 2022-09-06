@@ -3,74 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: tnamir <tnamir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 13:07:08 by asalek            #+#    #+#             */
-/*   Updated: 2021/11/09 13:07:10 by asalek           ###   ########.fr       */
+/*   Created: 2021/11/08 10:40:23 by tnamir            #+#    #+#             */
+/*   Updated: 2021/11/14 14:38:58 by tnamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-int	nbr_len(long nbr)
+static int	intsize(int x)
 {
-	long	len;
+	int				y;
+	unsigned int	xx;
 
-	len = 0;
-	if (nbr == 0)
-		return (1);
-	if (nbr < 0)
+	xx = x;
+	y = 1;
+	if (x < 0)
+		xx = -x;
+	while (xx > 9)
 	{
-		nbr = -nbr;
-		len++;
+		y++;
+		xx = xx / 10;
 	}
-	while (nbr > 0)
-	{
-		nbr = nbr / 10;
-		len++;
-	}
-	return (len);
-}
-
-char	*int_min(char *s)
-{
-	char	*min;
-	int		i;
-
-	i = 0;
-	min = "-2147483648\0";
-	while (i < 12)
-	{
-		s[i] = min[i];
-		i++;
-	}
-	return (s);
+	return (y);
 }
 
 char	*ft_itoa(int n)
 {
-	int		i;
-	char	*ptr;
+	int				size;
+	char			*charint;
+	unsigned int	nn;
 
-	i = nbr_len(n);
-	ptr = (char *)malloc(sizeof(char) * (i + 1));
-	if (!ptr)
-		return (NULL);
-	ptr[i--] = '\0';
-	if (n == 0)
-		ptr[i] = '0';
+	nn = n;
+	size = intsize(n);
 	if (n < 0)
 	{
-		if (n == -2147483648)
-			return (int_min(ptr));
-		ptr[0] = '-';
-		n = -n;
+		nn = -n;
+		size += 1;
 	}
-	while (n > 0)
+	charint = (char *)malloc(size * sizeof(char) + 1);
+	if (charint == NULL)
+		return (0);
+	charint[size] = 0;
+	while (size)
 	{
-		ptr[i] = '0' + (n % 10);
-		n = n / 10;
-		i--;
+		charint[size - 1] = nn % 10 + 48;
+		nn /= 10;
+		size--;
 	}
-	return (ptr);
+	if (n < 0)
+		charint[0] = '-';
+	return (charint);
 }

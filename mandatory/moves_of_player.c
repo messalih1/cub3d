@@ -4,9 +4,7 @@
 
 void move_player(t_player *p)
 {
-    alloc_lines(p);
-
-     
+    
     p->distance = malloc(sizeof(double) * p->num_of_rays);
     p->ver.distance = malloc(sizeof(double) * p->num_of_rays);
     p->hor.distance = malloc(sizeof(double) * p->num_of_rays);
@@ -17,6 +15,7 @@ void move_player(t_player *p)
     p->hor.i = 0;
     p->ray_angle = p->rotation_angle - (p->fov_angle / 2);
     p->angle_ray = malloc(sizeof(double) * p->num_of_rays);
+    
     find_intersections(p,0);
      
 }

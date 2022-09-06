@@ -13,8 +13,10 @@ void    wall_intersect_vertical(t_player *p,int if_is_facing_left)
     p->ver.found_wall = 0;
     while (point_in_range(p->ver.next_x,p->ver.next_y))
     {
-        if(p->lines[(int)(p->ver.next_y / TILE_SIZE)][(int)(p->ver.next_x / TILE_SIZE)] == '1')
+
+        if(p->cub_info.map[(int)(p->ver.next_y / TILE_SIZE)][(int)(p->ver.next_x / TILE_SIZE)] == '1')
         {
+        
             p->ver.found_wall = 1;
             p->ver.wall_hit_y = p->ver.next_y;
             p->ver.wall_hit_x = p->ver.next_x;            

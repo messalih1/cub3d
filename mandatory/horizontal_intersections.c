@@ -6,15 +6,13 @@ void wall_intersect_horizontal(t_player *p, int if_is_facing_up)
     p->hor.next_y = p->hor.y_intercept;
     if(if_is_facing_up)
         p->hor.next_y--;
-    
-    
+     
     // loop to find wall
     p->hor.found_wall = 0;
     while (point_in_range(p->hor.next_x,p->hor.next_y))
     {
-       
-
-        if(p->lines[(int)(p->hor.next_y / TILE_SIZE)][(int)(p->hor.next_x / TILE_SIZE)] == '1')
+            
+        if(p->cub_info.map[(int)(p->hor.next_y / TILE_SIZE)][(int)(p->hor.next_x / TILE_SIZE)] == '1')
         {
             p->hor.found_wall = 1;
             p->hor.wall_hit_y = p->hor.next_y;
@@ -28,7 +26,7 @@ void wall_intersect_horizontal(t_player *p, int if_is_facing_up)
             p->hor.next_x += p->hor.x_step;
         }
     }
-     
+    
     p->hor.distance[p->hor.i] = (p->hor.found_wall) ? distance_calc(p->x,p->y,p->hor.next_x,p->hor.next_y) : 10000000.444;
     p->hor.i++;
 

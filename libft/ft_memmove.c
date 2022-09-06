@@ -3,34 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: tnamir <tnamir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 12:11:56 by asalek            #+#    #+#             */
-/*   Updated: 2021/11/12 00:16:30 by asalek           ###   ########.fr       */
+/*   Created: 2021/11/04 09:36:14 by tnamir            #+#    #+#             */
+/*   Updated: 2021/11/13 20:24:06 by tnamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-void	*ft_memmove(void *dst, const void *sr, size_t len)
+#include"libft.h"
+
+void	*ft_memmove(void	*dst, const void	*src, size_t n)
 {
-	unsigned char	*dest;
-	unsigned char	*src;
-	size_t			i;
+	const char	*s;
+	char		*d;
+	size_t		indexer;
 
-	i = 0;
-	if (!dst && !sr)
-		return (NULL);
-	dest = (unsigned char *)dst;
-	src = (unsigned char *)sr;
-	if (src < dest)
+	s = src;
+	d = dst;
+	indexer = 0;
+	if (dst != 0 || src != 0)
 	{
-		while (i++ < len)
-			dest[len - i] = src[len - i];
-	}
-	else
-	{
-		while (len-- > 0)
-			*(dest++) = *(src++);
+		while (n > indexer)
+		{
+			if (d > s)
+			{
+				n--;
+				d[n] = s[n];
+			}
+			else
+			{
+				d[indexer] = s[indexer];
+				indexer++;
+			}
+		}
 	}
 	return (dst);
 }

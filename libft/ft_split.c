@@ -3,92 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: tnamir <tnamir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 15:47:23 by asalek            #+#    #+#             */
-/*   Updated: 2021/11/10 18:30:03 by asalek           ###   ########.fr       */
+/*   Created: 2021/11/23 14:40:15 by tnamir            #+#    #+#             */
+/*   Updated: 2021/11/23 14:40:19 by tnamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-void	free_unallocated_tab(char	*str)
+#include"libft.h"
+
+static char	**freee(char **p, int px)
 {
-	if (!str)
-		free(str);
+	while (px)
+	{
+		free(p[px]);
+		px--;
+	}
+	free(p);
+	return (0);
 }
 
-int	how_much_words(char const *str, char c)
+static	size_t	charsearch(const char *s, int c)
 {
-	int	x;
-	int	i;
+	size_t	x;
+	size_t	wordsnbr;
 
-	i = 0;
 	x = 0;
-	while (str[i])
+	wordsnbr = 0;
+	while (s[x])
 	{
-		while (str[i] == c)
-			i++;
-		if (str[i] != c && str[i] != '\0')
+		while (s[x] == c && s[x])
 			x++;
-		while (str[i] != c && str[i] != '\0')
-			i++;
+		if (s[x])
+			wordsnbr++;
+		while (s[x] != c && s[x])
+			x++;
 	}
-	return (x);
+	return (wordsnbr);
 }
 
-char	*allocate_new_tab(size_t size)
+static char	**allocation(char const *s, char c)
 {
-	char	*str;
+	size_t	x;
+	size_t	px;
+	size_t	y;
+	char	**p;
 
-	str = (char *)malloc(sizeof(char) * size + 1);
-	if (!str)
-		return (NULL);
-	ft_bzero(str, size + 1);
-	return (str);
-}
-
-int	word_len(char const *str, char c)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = 0;
-	while (str[i] == c)
-		i++;
-	while (str[i] != c && str[i] != '\0')
+	px = 0;
+	x = 0;
+	y = 0;
+	p = (char **)malloc(charsearch(s, c) * sizeof(char *) + 1);
+	if (!p)
+		return (0);
+	while (px < charsearch(s, c))
 	{
-		i++;
-		len++;
+		while (s[y] == c)
+			y++;
+		x = y;
+		while (s[x] != c && s[x])
+			x++;
+		p[px++] = ft_substr(s, y, x - y);
+		if (p[px - 1] == NULL)
+			return (freee(p, px));
+		y = x;
 	}
-	return (len);
+	p[px] = 0;
+	return (p);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
-	int		j;
-	int		jj;
-	char	**str;
+	char	**p;
 
 	if (!s)
 		return (NULL);
-	str = (char **)malloc(sizeof(char *) * (how_much_words(s, c) + 1));
-	if (!str)
-		return (NULL);
-	i = -1;
-	j = 0;
-	while (++i < how_much_words(s, c))
-	{
-		jj = 0;
-		str[i] = allocate_new_tab(word_len(&s[j], c) + 1);
-		free_unallocated_tab(str[i]);
-		while (s[j] == c)
-			j++;
-		while (s[j] != c && s[j])
-			str[i][jj++] = s[j++];
-		str[i][jj] = '\0';
-	}
-	str[i] = NULL;
-	return (str);
+	p = allocation(s, c);
+	return (p);
 }

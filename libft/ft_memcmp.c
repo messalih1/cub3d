@@ -3,28 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalek   <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tnamir <tnamir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 16:36:29 by asalek            #+#    #+#             */
-/*   Updated: 2021/11/10 18:42:32 by asalek           ###   ########.fr       */
+/*   Created: 2021/11/04 14:02:27 by tnamir            #+#    #+#             */
+/*   Updated: 2021/11/08 19:11:36 by tnamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+#include"libft.h"
+
+int	ft_memcmp(const void	*s1, const void	*s2, size_t n)
 {
-	unsigned char	*ptr;
-	unsigned char	*ptr2;
-	size_t			i;
+	int			x;
+	const char	*s11;
+	const char	*s22;
 
-	ptr = (unsigned char *)s1;
-	ptr2 = (unsigned char *)s2;
-	i = 0;
-	while (i < n)
+	x = 0;
+	s11 = s1;
+	s22 = s2;
+	while (x < (int)n)
 	{
-		if (ptr[i] != ptr2[i])
-			return ((unsigned char)ptr[i] - (unsigned char)ptr2[i]);
-		i++;
+		if (s11[x] != s22[x])
+			return ((unsigned char)s11[x] - (unsigned char)s22[x]);
+		x++;
 	}
 	return (0);
 }

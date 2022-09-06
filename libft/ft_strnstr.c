@@ -3,26 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalek   <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tnamir <tnamir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 18:43:49 by asalek            #+#    #+#             */
-/*   Updated: 2021/11/12 01:38:20 by asalek           ###   ########.fr       */
+/*   Created: 2021/11/01 18:41:25 by tnamir            #+#    #+#             */
+/*   Updated: 2021/11/13 19:37:22 by tnamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-char	*ft_strnstr(const char	*haystack, const char	*needle, size_t	len)
+#include"libft.h"
+
+char	*ft_strnstr(const char *word, const char	*lookfor, size_t n)
 {
-	size_t	n;
+	size_t	x;
+	size_t	nn;
 
-	n = ft_strlen((char *)needle);
-	if (!*needle)
-		return ((char *)haystack);
-	while (*haystack && len-- >= n)
+	nn = 0;
+	x = 0;
+	if (lookfor[0] == 0)
+		return ((char *)word);
+	while (word[x] && nn + x < n)
 	{
-		if (*haystack == *needle && ft_memcmp(haystack, needle, n) == 0)
-			return ((char *)haystack);
-		haystack++;
+		while (word[x] == lookfor[x] && nn + x < n)
+		{
+			x++;
+			if (lookfor[x] == 0)
+				return ((char *)word);
+		}
+		nn++;
+		word++;
+		x = 0;
 	}
-	return (NULL);
+	return (0);
 }

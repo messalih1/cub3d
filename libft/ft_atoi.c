@@ -3,50 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: tnamir <tnamir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/05 16:37:46 by asalek            #+#    #+#             */
-/*   Updated: 2021/11/14 00:41:31 by asalek           ###   ########.fr       */
+/*   Created: 2021/11/02 09:18:02 by tnamir            #+#    #+#             */
+/*   Updated: 2021/11/14 12:51:40 by tnamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-int	check_min_max_long(double n, int a)
+int	ft_atoi(const char	*s)
 {
-	n = a * n;
-	if (n > LONG_MAX)
+	size_t			x;
+	int				sign;
+	unsigned long	out;
+
+	x = 0;
+	sign = 1;
+	out = 0;
+	while (s[x] == 32 || s[x] == 10 || s[x] == 9
+		|| s[x] == 11 || s[x] == 12 || s[x] == 13)
+		x++;
+	if (s[x] == '-' || s[x] == '+')
+	{
+		if (s[x] == '-')
+			sign *= -1;
+		x++;
+	}
+	while (s[x] >= '0' && s[x] <= '9')
+		out = out * 10 + s[x++] - 48;
+	if (out > 4294967295)
+	{
+		if (sign == -1)
+			return (0);
 		return (-1);
-	if (n < LONG_MIN)
-		return (0);
-	return (n);
-}
-
-int	ft_atoi(const char	*str)
-{
-	int		i;
-	int		j;
-	int		a;
-	double	n;
-
-	i = 0;
-	j = 0;
-	a = 1;
-	n = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
-	while (str[i] == 43 || str[i] == 45)
-	{
-		if (str[i++] == '-')
-			a = -a;
-		j++;
 	}
-	if (j > 1)
-		return (0);
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		n = n * 10 + (str[i] - 48);
-		i++;
-	}
-	return (check_min_max_long(n, a));
+	return (sign * out);
 }

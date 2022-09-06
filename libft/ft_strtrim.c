@@ -3,64 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: tnamir <tnamir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/13 05:15:30 by asalek            #+#    #+#             */
-/*   Updated: 2021/11/13 05:15:40 by asalek           ###   ########.fr       */
+/*   Created: 2021/11/06 15:01:16 by tnamir            #+#    #+#             */
+/*   Updated: 2021/11/14 18:59:17 by tnamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-int	ft_start(const char *s1, const char *set)
+char	*ft_strtrim(char const	*s, char const	*set)
 {
-	size_t	len;
-	size_t	i;
+	char	*p;
+	size_t	x;
+	size_t	slen;
 
-	len = ft_strlen(s1);
-	i = 0;
-	while (i < len)
+	x = 0;
+	if (s != 0 && set != 0)
 	{
-		if (ft_strchr(set, s1[i]) == 0)
-			break ;
-		i++;
+		slen = ft_strlen(s);
+		while (s[x] && ft_memchr(set, s[x], ft_strlen(set)))
+			x++;
+		while (s[x] && ft_memchr(set, s[slen - 1], ft_strlen(set)))
+			slen--;
+		p = ft_substr(s, x, slen - x);
+		return (p);
 	}
-	return (i);
-}
-
-int	ft_end(const char *s1, const char *set)
-{
-	size_t	len;
-	size_t	i;
-
-	len = ft_strlen(s1);
-	i = 0;
-	while (i < len)
-	{
-		if (ft_strchr(set, s1[len - i - 1]) == 0)
-			break ;
-		i++;
-	}
-	return (len - i);
-}
-
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	int		start;
-	int		end;
-	char	*str;
-
-	if (s1 == NULL)
-		return (NULL);
-	if (set == NULL)
-		return (ft_strdup((char *)s1));
-	start = ft_start(s1, set);
-	end = ft_end(s1, set);
-	if (start >= end)
-		return (ft_strdup(""));
-	str = (char *)malloc(sizeof(char) * (end - start + 1));
-	if (str == NULL)
-		return (NULL);
-	ft_strlcpy(str, s1 + start, end - start + 1);
-	return (str);
+	return (0);
 }
