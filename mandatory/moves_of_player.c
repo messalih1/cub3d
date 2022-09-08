@@ -15,7 +15,16 @@ void move_player(t_player *p)
     p->hor.i = 0;
     p->ray_angle = p->rotation_angle - (p->fov_angle / 2);
     p->angle_ray = malloc(sizeof(double) * p->num_of_rays);
-    
+    float next_x;
+    float next_y;
+    float move_step = p->walk * p->walk_speed;
+    next_x = p->x +  cos(p->rotation_angle) * move_step; 
+    next_y = p->y + sin(p->rotation_angle) * move_step;
+    if(p->cub_info.map[(int)(next_y / TILE_SIZE)][(int)(next_x / TILE_SIZE)] != '1')
+    {
+        p->x = next_x; 
+        p->y = next_y;
+    }
     find_intersections(p,0);
      
 }
@@ -26,12 +35,7 @@ int	key_hook_(t_player *p, int keycode)
     float move_step;
     
     if(keycode == 1)// s
-    {
         p->walk = -1;
-        move_step = p->walk * p->walk_speed;
-        p->x += cos(p->rotation_angle) * move_step; 
-        p->y += sin(p->rotation_angle) * move_step;
-    }
     if(keycode == 2)// a
     {
         p->move = -1;
@@ -63,12 +67,8 @@ int	key_hook(int keycode, t_player *p)
         p->rotation_angle += p->turn * p->turn_speed;
     }
     if(keycode == 13)// w
-    {
         p->walk = +1;
-        move_step = p->walk * p->walk_speed;
-        p->x += cos(p->rotation_angle) * move_step; 
-        p->y += sin(p->rotation_angle) * move_step;
-    }
+
     return key_hook_(p,keycode);
 }
 
