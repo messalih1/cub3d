@@ -69,35 +69,12 @@ void rendering_walls(t_player *p)
     {
         return_y(p);
         y = p->wall.wall_top_px;
-        int up = (p->rotation_angle < PI / 2 || p->rotation_angle > (3 * PI) / 2);
+        
         normalize_(p);
         while (y <  p->wall.wall_bottom_px)
         { 
-            if(up)
-            {
-                if(p->if_is_vertical[p->wall.i])
-                    x_offset = (fmod(p->py[p->wall.i], TILE_SIZE)) * (width / TILE_SIZE);
-                else
-                    x_offset = (fmod(p->px[p->wall.i], TILE_SIZE)) * (width / TILE_SIZE);
-                
-                distance_from_top = (y + (p->wall.wall_strip_height / 2) - (WINDOW_HEIGHT / 2));
-                y_offset = distance_from_top * ( (width / p->wall.wall_strip_height));
-                dst = p->mlx.addr + (y * p->mlx.line_length + p->wall.x * (p->mlx.bits_per_pixel / 8));
-                src = p->mlx.addr_px + (y_offset * p->mlx.sl + x_offset * (p->mlx.bpp / 8));
-                *(unsigned int*)dst =  *(unsigned int*)src; 
-            }
-            else if(!up)
-            {
-                if(p->if_is_vertical[p->wall.i])
-                    x_offset = (fmod(p->py[p->wall.i], TILE_SIZE)) * (p->width / TILE_SIZE);
-                else
-                    x_offset = (fmod(p->px[p->wall.i], TILE_SIZE)) * (p->width / TILE_SIZE);
-                distance_from_top = (y + (p->wall.wall_strip_height / 2) - (WINDOW_HEIGHT / 2));
-                y_offset = distance_from_top * ( (p->width / p->wall.wall_strip_height));
-                dst = p->mlx.addr + (y * p->mlx.line_length + p->wall.x * (p->mlx.bits_per_pixel / 8));
-                src = p->mlx.addr_px_2 + (y_offset * p->mlx.sl2 + x_offset * (p->mlx.bpp2 / 8));
-                *(unsigned int*)dst =  *(unsigned int*)src; 
-            }
+             my_mlx_pixel_put(p, p->wall.x , y, 0xCFD2CF);
+             
             y++;
         }
         draw_floor_roof(p);
