@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   content_checker.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tnamir <tnamir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/09 18:14:27 by tnamir            #+#    #+#             */
+/*   Updated: 2022/09/09 18:14:27 by tnamir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "map.h"
 
-int lines_counter(char	*path)
+int	lines_counter(char	*path)
 {
 	int		fd;
 	int		counter;
@@ -13,7 +25,7 @@ int lines_counter(char	*path)
 		exit(EXIT_FAILURE);
 	free(line);
 	line = get_next_line(fd);
-	while(line)
+	while (line)
 	{
 		counter++;
 		free(line);
@@ -23,9 +35,9 @@ int lines_counter(char	*path)
 	return (counter);
 }
 
-int content_checker(char *path_name, t_cub_info *cub_info)
+int	content_checker(char *path_name, t_cub_info *cub_info)
 {
-	int fd;
+	int	fd;
 	int	lines_count;
 
 	(void)cub_info;
@@ -34,7 +46,10 @@ int content_checker(char *path_name, t_cub_info *cub_info)
 		exit(EXIT_FAILURE);
 	lines_count = lines_counter(path_name);
 	if (!lines_count)
-		map_error("file is empty", EXIT_FAILURE, cub_info);
+	{
+		write(2, "cub3D: file is empty", 21);
+		exit(1);
+	}
 	texture_generator(cub_info, fd);
 	close(fd);
 	return (0);

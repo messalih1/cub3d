@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tnamir <tnamir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/09 18:40:32 by tnamir            #+#    #+#             */
+/*   Updated: 2022/09/09 18:40:32 by tnamir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "map.h"
 
-void    freee(char  **pointer)
+void	freee(char	**pointer)
 {
-	int i;
+	int	i;
 
 	if (pointer)
 	{
@@ -13,25 +25,32 @@ void    freee(char  **pointer)
 	free(pointer);
 }
 
-void    cub_info_struct_free(t_cub_info *cub_info)
+void	cub_info_struct_free(t_cub_info *cub_info)
 {
-	free(cub_info->NO);
-	free(cub_info->SO);
-	free(cub_info->EA);
-	free(cub_info->WE);
-	free(cub_info->F);
-	free(cub_info->C);
-	freee(cub_info->map);
+	if (cub_info->no)
+		free(cub_info->no);
+	if (cub_info->so)
+		free(cub_info->so);
+	if (cub_info->ea)
+		free(cub_info->ea);
+	if (cub_info->we)
+		free(cub_info->we);
+	if (cub_info->f)
+		free(cub_info->f);
+	if (cub_info->c)
+		free(cub_info->c);
+	if (cub_info->map)
+		freee(cub_info->map);
 }
 
-int double_pointer_len(char **pointer)
+int	double_pointer_len(char **pointer)
 {
-    int x;
+	int	x;
 
-    x = 0;
-    while (pointer[x])
-        x++;
-    return (x);
+	x = 0;
+	while (pointer[x])
+		x++;
+	return (x);
 }
 
 int	skip_front_space(char	*line)
@@ -49,7 +68,7 @@ int	skip_back_space(char	*line)
 	int	x;
 
 	x = ft_strlen(line);
-	while(line[x - 1] == ' ')
+	while (line[x - 1] == ' ')
 		x--;
 	return (x);
 }

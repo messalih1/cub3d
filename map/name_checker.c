@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   name_checker.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tnamir <tnamir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/09 18:25:47 by tnamir            #+#    #+#             */
+/*   Updated: 2022/09/09 18:25:47 by tnamir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "map.h"
 
-int valid_file(int fd, char	*file_name)
+int	valid_file(int fd, char	*file_name)
 {
 	if (fd == -1)
 	{
@@ -17,9 +29,9 @@ int valid_file(int fd, char	*file_name)
 	return (EXIT_SUCCESS);
 }
 
-void name_checker(char *path_name)
+void	name_checker(char *path_name)
 {
-	int fd;
+	int	fd;
 
 	fd = open(path_name, O_RDONLY);
 	valid_file(fd, path_name);
