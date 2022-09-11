@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = cc
-CFLAGS = -g
+CFLAGS = -Wall -Wextra -Werror
 LIBFT = ./libft/libft.a
 MLX = ./mlx/libmlx.a
 HEADER = ./includes/header.h ./map/map.h ./libft/libft.h ./gnl/get_next_line.h

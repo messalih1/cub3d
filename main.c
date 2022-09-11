@@ -12,54 +12,56 @@
 
 #include "./includes/header.h"
 
-void    init_player_attributs(t_player  *p)
+void	init_player_attributs(t_player *p)
 {
-    p->x = (double)(p->cub_info.player_y * TILE_SIZE);
-    p->y =  (double)(p->cub_info.player_x * TILE_SIZE);
-    p->turn = 0;
-    p->walk = 0;
-    p->move = 0;
-    if(p->cub_info.player == 'S')
-        p->rotation_angle = PI / 2;
-    else if(p->cub_info.player == 'N')
-        p->rotation_angle = (3 * PI) / 2;
-    else if(p->cub_info.player == 'E')
-        p->rotation_angle = 0;
-    else if(p->cub_info.player == 'W')
-        p->rotation_angle = PI;
-    p->walk_speed = 20;
-    p->turn_speed = 4 * (PI / 180);
-    p->fov_angle = 60 * (PI / 180);
-    p->num_of_rays = p->win_width;
-} 
-
-int cclose(t_player  *p)
-{
-    cub_info_struct_free(&p->cub_info);
-    exit(0);
+	p->x = (double)(p->cub_info.player_y * TILE_SIZE);
+	p->y = (double)(p->cub_info.player_x * TILE_SIZE);
+	p->turn = 0;
+	p->walk = 0;
+	p->move = 0;
+	if (p->cub_info.player == 'S')
+		p->rotation_angle = PI / 2;
+	else if (p->cub_info.player == 'N')
+		p->rotation_angle = (3 * PI) / 2;
+	else if (p->cub_info.player == 'E')
+		p->rotation_angle = 0;
+	else if (p->cub_info.player == 'W')
+		p->rotation_angle = PI;
+	p->walk_speed = 20;
+	p->turn_speed = 4 * (PI / 180);
+	p->fov_angle = 60 * (PI / 180);
+	p->num_of_rays = p->win_width;
 }
 
-int main(int argc, char *argv[])
+int	cclose(t_player *p)
 {
-    t_player pl;
-    t_player  *p = &pl;
+	cub_info_struct_free(&p->cub_info);
+	exit(0);
+}
 
-    if (argc != 2)
-    {
-        write(2, "cub3D: Invalid number of arguments", 35);
-        return (1);
-    }
-    name_checker(argv[1]);
-    content_checker(argv[1],&p->cub_info);
-    p->win_height = p->cub_info.map_rows * TILE_SIZE;
-    p->win_width = p->cub_info.map_columns * TILE_SIZE;
-    p->mlx.mlx = mlx_init();
-    p->mlx.mlx_win = mlx_new_window(p->mlx.mlx, p->win_width, p->win_height, "cub3D");
-    init_player_attributs(p);
-    move_player(p, 0.0, 0.0, 0.0);
-    moves_of_player(p);
-    mlx_hook(p->mlx.mlx_win, 17, 0, cclose, p);
-    mlx_loop(p->mlx.mlx);
-    cub_info_struct_free(&p->cub_info);
-    return (0);
+int	main(int argc, char *argv[])
+{
+	t_player	pl;
+	t_player	*p;
+
+	p = &pl;
+	if (argc != 2)
+	{
+		write(2, "cub3D: Invalid number of arguments", 35);
+		return (1);
+	}
+	name_checker(argv[1]);
+	content_checker(argv[1], &p->cub_info);
+	p->win_height = p->cub_info.map_rows * TILE_SIZE;
+	p->win_width = p->cub_info.map_columns * TILE_SIZE;
+	p->mlx.mlx = mlx_init();
+	p->mlx.mlx_win = mlx_new_window(p->mlx.mlx,
+			p->win_width, p->win_height, "cub3D");
+	init_player_attributs(p);
+	move_player(p, 0.0, 0.0, 0.0);
+	moves_of_player(p);
+	mlx_hook(p->mlx.mlx_win, 17, 0, cclose, p);
+	mlx_loop(p->mlx.mlx);
+	cub_info_struct_free(&p->cub_info);
+	return (0);
 }

@@ -82,7 +82,7 @@ void	no_opened_space(t_cub_info *cub_info)
 				cub_info->player = cub_info->map[x][y];
 			}
 		}
-		if (y > cub_info->map_columns)
+		if (y > (size_t)cub_info->map_columns)
 			cub_info->map_columns = y;
 	}
 	cub_info->map_rows = x - 1;

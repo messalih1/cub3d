@@ -147,5 +147,5 @@ void	horizontal_intersections(t_player *p);
 void	find_intersections(t_player *p, int i);
 void	put_player(t_player *p);
 int		moves_of_player(t_player *p);
-
+void	normalize_rotation_angle(t_player *p);
 #endif

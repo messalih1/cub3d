@@ -27,7 +27,14 @@ void draw_floor_roof(t_player *p)
         my_mlx_pixel_put(p, p->wall.x , y, p->cub_info.c_int);
         y++;
     }
+}
 
+void	normalize_rotation_angle(t_player *p)
+{
+	if (p->rotation_angle >= 2 * PI)
+		p->rotation_angle -= 2 * PI;
+	if (p->rotation_angle <= 0)
+		p->rotation_angle += 2 * PI;
 }
 
 void free_all(t_player *p, t_tx   *texture)

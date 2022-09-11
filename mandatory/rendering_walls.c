@@ -22,12 +22,12 @@ int return_y(t_player *p)
     if (p->wall.wall_top_px < 0)
         p->wall.wall_top_px = 0;
     else
-        p->wall.wall_top_px = p->wall.wall_top_px;    
+        p->wall.wall_top_px = p->wall.wall_top_px;
 	p->wall.wall_bottom_px =   (p->win_height / 2 + p->wall.wall_strip_height / 2); 
     if (p->wall.wall_bottom_px  > p->win_height)
 	    p->wall.wall_bottom_px = p->win_height;
     else
-        p->wall.wall_bottom_px =  p->wall.wall_bottom_px;
+        p->wall.wall_bottom_px = p->wall.wall_bottom_px;
     return (p->wall.wall_top_px);
 }
 
@@ -63,6 +63,7 @@ int	wall_direction(t_player *p)
 {
 	int	i;
 
+    i = 0;
 	if(p->if_is_vertical[p->wall.i] && p->px[p->wall.i] > p->x )
 		i = 1;
 	else if(p->if_is_vertical[p->wall.i] && p->px[p->wall.i] < p->x  )
@@ -73,9 +74,6 @@ int	wall_direction(t_player *p)
 		i = 3;
 	return (i);
 }
-
- 
-
 
 void rendering_walls(t_player *p, int y, int x_offset, int y_offset)
 {
