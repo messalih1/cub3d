@@ -135,7 +135,7 @@ typedef struct t_play
 void    free_all(t_player *p, t_tx   *texture);
 void    normalize_rotation_angle(t_player *p);
 int		cclose(t_player  *p);
-int		move_player(t_player *p);
+int		move_player(t_player *p, float next_x, float next_y, float move_step);
 int		point_in_range(float x, float y, t_player  *p);
 void	my_mlx_pixel_put(t_player *data, int x, int y, int color);
 void	draw_floor_roof(t_player *p);

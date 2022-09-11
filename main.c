@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
     p->mlx.mlx = mlx_init();
     p->mlx.mlx_win = mlx_new_window(p->mlx.mlx, p->win_width, p->win_height, "cub3D");
     init_player_attributs(p);
-    move_player(p);
+    move_player(p, 0.0, 0.0, 0.0);
     moves_of_player(p);
     mlx_hook(p->mlx.mlx_win, 17, 0, cclose, p);
     mlx_loop(p->mlx.mlx);

@@ -26,12 +26,9 @@ void    alloc_(t_player *p)
     p->angle_ray = malloc(sizeof(double) * p->num_of_rays);
 }
 
-int move_player(t_player *p)
-{
-    float   next_x;
-    float   next_y;
-    float   move_step;
 
+int move_player(t_player *p, float next_x, float next_y, float move_step)
+{
     alloc_(p);
     move_step = p->walk * p->walk_speed;
     if(p->move != 0)
@@ -74,7 +71,7 @@ int key_hook(int keycode, t_player *p)
         p->move = -1; 
     if(keycode == 2)
         p->move = +1;
-    return (move_player(p));
+    return (move_player(p, 0.0, 0.0, 0.0));
 }
 
 int key_hook_s(int keycode, t_player *p)
